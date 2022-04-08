@@ -1,0 +1,191 @@
+#!/bin/sh
+#	build script for Anmincat Linux. 
+#	Made by Supphakit Duanghoy @2022.
+
+if [ ! $(whoami) = "root"  ]; then
+	echo "You must be root to use this script."
+	exit 1
+fi
+
+check() {
+	apt-get --version | head -n1
+	grep --version | head -n1
+	gzip --version | head -n1
+	patch --version | head -n1
+	sed --version | head -n1
+	tar --version | head -n1
+	xz --version | head -n1
+}
+
+getsources() {
+	if [ ! -d "packages" ]; then
+		mkdir -pv packages/base
+		mkdir -v packages/tools
+		mkdir -v packages/xorg
+		mkdir -v packages/xapps
+	fi
+	./pkg-base
+	./pkg-tools
+	./pkg-xorg
+	./pkg-xapps
+	./pkg-make-list
+}
+
+getkernel() {
+	for k in kernel/linux-*; do
+		if [ -d "$k" ]; then
+			rm -rf $k
+		fi
+		if [ -f "$k" ]; then
+			rm $k
+		fi
+	done
+	echo "[build] Downloading Linux Kernel source"
+	cd kernel
+	wget -N https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.109.tar.xz
+	tar xvf linux-5.10.109.tar.xz
+	cd ..
+}
+
+getbusybox() {
+		for u in userland/busybox-*; do
+		if [ -d "$u" ]; then
+			rm -rf $u
+		fi
+		if [ -f "$u" ]; then
+			rm $u
+		fi
+	done
+	echo "[build] Downloading busybox source"
+	cd userland
+	wget -N https://busybox.net/downloads/busybox-1.35.0.tar.bz2
+	tar xvf busybox-1.35.0.tar.bz2
+	cd ..
+}
+
+build() {
+	# run buildscripts
+	for i in buildscripts/0*; do
+		$i
+	done
+}
+
+buildrootfs() {
+	# run buildscripts
+	buildscripts/00*
+	buildscripts/01*
+	buildscripts/02*
+	buildscripts/03*
+	buildscripts/04*
+	buildscripts/05*
+	buildscripts/08*
+	buildscripts/09*
+}
+
+buildkernel() {
+	buildscripts/07*
+}
+
+busyboxconf() {
+	for b in userland/busybox*; do
+		if [ -d "$b" ]; then
+			cd $b
+		fi
+	done
+	cp -rv ../busyboxconfig_$(uname -m)	.config
+	make menuconfig
+	cp -rv .config ../busyboxconfig_$(uname -m)
+	cd ../..
+}
+
+kernelconf() {
+	for k in kernel/linux*; do
+		if [ -d "$k" ]; then
+			cd $k
+		fi
+	done
+	cp -rv ../kernelconfig_$(uname -m)	.config
+	make menuconfig
+	cp -rv .config ../kernelconfig_$(uname -m)
+	cd ../..
+}
+
+help() {
+	echo "Usage: ./build <all,build,build_[rootfs,kernel],check,update_[package,kernel,busybox],clean,help"
+	echo "		config_[busybox,kernel]>"
+	echo "Example: ./build all"
+	echo "Example: ./build build_rootfs (build only rootfs)"
+	echo
+	echo 'check		Check requirements.'
+	echo 'all 		Build all.'
+	echo 'clean		Clean everything.'
+	echo 'build_rootfs 	Build rootfs only (require kernel modules).'
+	echo 'build_kernel 	Build kernel and modules.'
+	echo 'update_package	Download/Update packages.'
+	echo 'update_kernel	Download/Update Linux kernel.'
+	echo 'update_busybox	Download/Update Busybox.'
+	echo 'config_busybox	Launch Busybox configuration.'
+	echo 'config_kernel	Launch Linux Kernel configuration.'
+	echo
+	echo 'Made by Supphakit Duanghoy (c) 2022, for building Anmincat Linux.'
+}
+
+case "$1" in
+	all)
+		getbusybox
+		getkernel
+		getsources
+		build
+		;;
+	update_package)
+		getsources
+		;;
+	update_kernel)
+		getkernel
+		;;
+	update_busybox)
+		getbusybox
+		;;
+	build_rootfs)
+		buildrootfs
+		;;
+	build_kernel)
+		buildkernel
+		;;
+	config_busybox)
+		busyboxconf
+		;;
+	config_kernel)
+		kernelconf
+		;;	
+	clean)
+		rm -rf system
+		rm -rf cdroot
+		rm -rf packages
+		for k in kernel/linux-*; do
+			if [ -d "$k" ]; then
+				rm -rf $k
+			fi
+			if [ -f "$k" ]; then
+				rm $k
+			fi
+		done
+		for u in userland/busybox-*; do
+			if [ -d "$u" ]; then
+				rm -rf $u
+			fi
+			if [ -f "$u" ]; then
+				rm $u
+			fi
+		done
+		;;
+	check)
+		check
+		;;
+	help)
+		help
+		;;
+	*)
+		help
+		;;
+esac
