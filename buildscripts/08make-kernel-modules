@@ -1,0 +1,26 @@
+#!/bin/sh
+
+echo
+echo "Now installing linux kernel modules..."
+echo
+
+for i in kernel/linux*; do
+	if [ -d "$i" ]; then
+		cd $i
+	fi
+done
+
+echo "[kernel-modules] Installing modules into system directory..."
+make INSTALL_MOD_PATH="../../system" modules_install
+cd ../..
+
+echo "[kernel-modules] Removing build and source folder..."
+if [ $(uname -m) = "x86_64" ]; then
+	rm system/lib/modules/*-anmincat64/build
+	rm system/lib/modules/*-anmincat64/source
+else
+	rm system/lib/modules/*-anmincat/build
+	rm system/lib/modules/*-anmincat/source
+fi
+
+echo "[kernel-modules] Finished!"

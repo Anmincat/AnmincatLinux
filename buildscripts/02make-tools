@@ -1,0 +1,20 @@
+#!/bin/sh
+
+echo
+echo "Now installing tools packages..."
+echo
+
+for packages in packages/tools/*.deb; do
+	echo "[tools] Installing $packages"
+	dpkg -x $packages system/
+done
+
+echo "[tools] Installing grub4dos"
+mkdir -v system/usr/lib/grub4dos
+cp packages/tools/grub4dos-0.4.6a-2022-01-18.7z system/usr/lib/grub4dos
+cd system/usr/lib/grub4dos
+7z x grub4dos-0.4.6a-2022-01-18.7z
+rm grub4dos-0.4.6a-2022-01-18.7z
+cd ../../../../
+
+echo "[tools] Finished!"

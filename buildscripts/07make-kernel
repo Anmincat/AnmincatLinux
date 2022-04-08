@@ -1,0 +1,21 @@
+#!/bin/sh
+
+echo
+echo "Now building linux kernel..."
+echo
+
+for i in kernel/linux*; do
+	if [ -d "$i" ]; then
+		cd $i
+	fi
+done
+
+echo "[kernel] Begin building linux kernel..."
+make clean
+make mrproper
+cp ../kernelconfig_$(uname -m) .config
+make bzImage -j$(nproc)
+cp -v arch/x86/boot/bzImage ../../vmlinuz
+make modules -j$(nproc)
+
+echo "[kernel] Finished!"

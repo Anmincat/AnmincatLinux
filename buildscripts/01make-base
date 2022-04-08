@@ -1,0 +1,89 @@
+#!/bin/sh
+
+echo
+echo "Now making base system..."
+echo
+
+for packages in packages/base/*.deb; do
+	echo "[base] Installing $packages"
+	dpkg -x $packages system/
+done
+
+# copy files to system/
+echo "[base] Copying configuration files and stuffs into system/ ... "
+cp -v files/etc/group system/etc/
+cp -v files/etc/hostname system/etc/
+cp -v files/etc/hosts system/etc/
+cp -v files/etc/inittab system/etc/
+cp -v files/etc/fstab system/etc/
+cp -v files/etc/os-release system/etc/
+cp -v files/etc/passwd system/etc/
+cp -v files/etc/shadow system/etc/
+cp -v files/etc/profile system/etc/
+rm -v system/etc/init.d/eudev
+cp -rv files/etc/init.d/* system/etc/init.d/
+cp -rv files/usr/share/udhcpc system/usr/share/
+cp -v files/root/.jwmrc system/root/
+cp -v files/root/.gtkrc-2.0 system/root/
+cp -v files/root/.xinitrc system/root/
+cp -v files/root/.bash_profile system/root/
+cp -v files/root/.conkyrc system/root/
+cp -rv files/root/.config system/root/
+cp -rv files/root/.Xresources system/root/
+cp -rv files/root/INSTALLED_PACKAGES system/root/
+cp -rv files/root/LICENSE system/root/
+cp -rv files/usr/share/wallpapers system/usr/share
+cp -rv files/sbin/powermenu system/sbin/
+cp -rv files/usr/bin/catsysinfo system/usr/bin/
+cp -rv files/usr/bin/catabout system/usr/bin/
+cp -rv files/usr/bin/catabout.* system/usr/bin/
+cp -rv files/sbin/setup-* system/sbin/
+
+echo "[base] Applying services..."
+mkdir -v system/etc/init.d/start
+mkdir -v system/etc/init.d/stop
+ln -sv /etc/init.d/services/eudev system/etc/init.d/start/S01eudev
+ln -sv /etc/init.d/services/network system/etc/init.d/stop/K01network
+ln -sv /etc/init.d/services/eudev system/etc/init.d/stop/K02eudev
+
+# build busybox
+echo "[base] Begin building busybox..."
+for b in userland/busybox*; do
+	if [ -d "$b" ]; then
+		cd $b
+	fi
+done
+
+make clean
+cp -v ../busyboxconfig_$(uname -m) .config
+make -j$(nproc)
+make CONFIG_PREFIX="../../system" install
+cd ../..
+
+# make init wrapper
+echo "[base] Creating init wrapper"
+printf "#!/bin/ash\nexec /sbin/init" > system/init
+
+# copy keyboard layouts
+echo "[base] Copying keyboard layouts .kmap"
+mkdir system/usr/share/kmap
+cp -rv keymaps/* system/usr/share/kmap
+
+# apply permission
+echo "[base] Applying permissions"
+chmod u+x system/init
+chmod 644 system/etc/inittab
+chmod 644 system/etc/fstab
+chmod 644 system/etc/hostname
+chmod 755 system/etc/init.d
+chmod 744 system/etc/init.d/rcS
+chmod 744 system/etc/init.d/rc.shutdown
+chmod -R 755 system/etc/init.d/services
+chmod 644 system/etc/group
+chmod 644 system/etc/os-release
+chmod 600 system/etc/shadow
+chmod 644 system/etc/hosts
+chmod 644 system/etc/profile
+chmod 755 system/usr/share/udhcpc/default.script
+
+echo "[base] Finished!"

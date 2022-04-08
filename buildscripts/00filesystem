@@ -1,0 +1,46 @@
+#!/bin/sh
+printf "[filesystem] Checking if old system directory is existed..."
+if [ -d ${PWD}/system ]; then
+	printf "yes, deleting...\n"
+	rm -rf system
+else
+	printf "no\n"
+fi
+
+echo "[filesystem] Creating filesystem structure for system/ ..."
+mkdir -pv system/etc
+mkdir -v system/bin
+mkdir -v system/sbin
+mkdir -v system/lib
+mkdir -v system/dev
+mkdir -v system/tmp
+mkdir -v system/sys
+mkdir -v system/proc
+mkdir -v system/home
+mkdir -v system/mnt
+mkdir -v system/opt
+mkdir -v system/run
+mkdir -pv system/var/log
+mkdir -pv system/usr/local
+mkdir -v system/usr/local/bin
+mkdir -v system/usr/local/sbin
+mkdir -v system/usr/local/lib
+mkdir -v system/usr/local/share
+mkdir -v system/usr/local/etc
+mkdir -v system/usr/share
+mkdir -v system/usr/lib
+mkdir -v system/usr/bin
+mkdir -v system/usr/sbin
+
+case $(uname -m) in
+	x86_64) mkdir -v system/lib64 ;;
+esac
+
+install -dv -m 0750 system/root
+mkdir system/root/.local
+
+echo "[filesystem] Creating device nodes..."	
+mknod -m 600 system/dev/console c 5 1
+mknod -m 666 system/dev/null c 1 3
+
+echo "[filesystem] Finished!"

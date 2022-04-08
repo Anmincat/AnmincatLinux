@@ -1,0 +1,16 @@
+#!/bin/sh
+
+echo
+echo "Now installing xorg apps packages..."
+echo
+
+for packages in packages/xapps/*.deb; do
+	echo "[xapps] Installing $packages"
+	dpkg -x $packages system/
+done
+
+echo "[xapps] Copying fixed gparted launcher script"
+cp -rv files/usr/sbin/gparted system/usr/sbin/gparted
+chown 0:0 system/usr/sbin/gparted
+
+echo "[xapps] Finished!"

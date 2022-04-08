@@ -1,0 +1,62 @@
+#!/bin/sh
+
+. files/etc/os-release
+
+echo
+echo "Now making ISO bootable image..."
+echo
+
+printf "[iso] Checking if old cdroot directory is existed..."
+if [ -d ${PWD}/cdroot ]; then
+	printf "yes, deleting...\n"
+	rm -rf cdroot
+else
+	printf "no\n"
+fi
+
+# pack base system into initrd
+echo "[iso] Packing base system..."
+cd system
+find . | cpio -o -H newc | xz --format=lzma > ../rootfs.gz
+cd ..
+chown 1000:1000 rootfs.gz
+
+if [ ! -d "cdroot" ]; then
+	echo "[iso] Creating cdroot directory..."
+	mkdir -pv cdroot/boot
+	mkdir -v cdroot/isolinux
+fi
+
+echo "[iso] Copying boot media contents into cdroot directory..."
+cp -rv syslinux/$(uname -m)-BIOS/* cdroot/isolinux
+cp -v rootfs.gz cdroot/boot
+cp -v vmlinuz cdroot/boot
+
+echo "[iso] Creating ISO9660 bootable image..."
+xorriso \
+	-as mkisofs \
+    -iso-level 3 \
+    -full-iso9660-filenames \
+    -volid "ANMINCAT" \
+    -eltorito-boot \
+    isolinux/isolinux.bin \
+    -no-emul-boot \
+    -boot-load-size 4 \
+    -boot-info-table \
+    --eltorito-catalog isolinux/isolinux.cat \
+    -output "${PWD}/Anmincat_$VERSION.iso" \
+        "${PWD}/cdroot"
+
+echo "[iso] Applying isohybrid..."
+isohybrid Anmincat_$VERSION.iso
+
+echo "[iso] Calculating md5..."
+md5sum Anmincat_$VERSION.iso > MD5SUM
+
+echo "[iso] Calculating sha1sum..."
+sha1sum Anmincat_$VERSION.iso > SHA1SUM
+
+echo "[iso] Calculating sha256..."
+sha256sum Anmincat_$VERSION.iso > SHA256SUM
+
+echo "[iso] Finished!"

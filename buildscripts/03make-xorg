@@ -1,0 +1,15 @@
+#!/bin/sh
+
+echo
+echo "Now installing xorg packages..."
+echo
+
+for packages in packages/xorg/*.deb; do
+	echo "[xorg] Installing $packages"
+	dpkg -x $packages system/
+done
+
+echo "[xorg] Copying fixed startx"
+cp -rv files/usr/bin/startx system/usr/bin/startx
+
+echo "[xorg] Finished!"
