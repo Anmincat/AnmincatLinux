@@ -1,0 +1,31 @@
+#!/bin/sh
+
+PACKAGES_LIBS="libjpeg62-turbo libfribidi0 libcairo2 libxcb-render0 librsvg2-2 libgdk-pixbuf-2.0-0 libcairo-gobject2 
+libpangocairo-1.0-0 libpangoft2-1.0-0 libharfbuzz0b libgraphite2-3 libpango-1.0-0 libthai0 libdatrie1 libxml2 libicu67 
+libmount1 libtiff5 libwebp6 libjbig0 libdeflate0 libatomic1  libglvnd0 libiw30 liblua5.3-0 libimlib2 
+libgif7 libcurl3-gnutls librtmp1 libpsl5 libnghttp2-14 libgssapi-krb5-2 libk5crypto3 libkrb5-3 libkeyutils1 
+libkrb5support0 libglade2-0 libatk1.0-data libatk1.0-0 libgtk2.0-0 libcups2 libavahi-client3 libavahi-common3 
+libavahi-common-data libthai-data libxcomposite1 libstartup-notification0 libldap-2.4-2 libldap-common 
+libsasl2-2 libsasl2-modules-db libfm-gtk4 libfm4 libfm-data libmenu-cache3 libmenu-cache-bin libfm-extra4 
+libfm-gtk-data libexif12 libexiv2-27 libdbus-glib-1-2 libparted-fs-resize0 libgtkmm-2.4-1v5 libpangomm-1.4-1v5 
+libcairomm-1.0-1v5 libatkmm-1.6-1v5 libglibmm-2.4-1v5 libsigc++-2.0-0v5 libpangoft2-1.0-0 
+libopenjp2-7 libwebpmux3 "
+
+PACKAGES="viewnior pcmanfm jwm conky-std xterm fonts-dejavu-core greybird-gtk-theme gtk2-engines-murrine 
+shared-mime-info hardinfo xdg-utils gtk2-engines-pixbuf adwaita-icon-theme "
+
+rm packages/xapps/*.deb
+cd packages/xapps
+echo "[pkg-xapps] Downloading packages"
+apt-get download $PACKAGES
+
+echo "[pkg-xapps] Downloading package libs"
+apt-get download $PACKAGES_LIBS
+
+echo "[pkg-xapps] Downloading external packages"
+wget -N https://mxrepo.com/mx/repo/pool/main/g/gtkdialog/gtkdialog_0.8.3-2mx19_amd64.deb
+wget -N http://ftp.jp.debian.org/debian/pool/main/l/leafpad/leafpad_0.8.18.1-5_amd64.deb
+wget -N http://ftp.jp.debian.org/debian/pool/main/g/gparted/gparted_0.32.0-2_amd64.deb
+wget -N http://ftp.jp.debian.org/debian/pool/main/x/xarchiver/xarchiver_0.5.4-7_amd64.deb
+
+cd ../..

@@ -1,0 +1,25 @@
+#!/bin/sh
+# excut base-system
+
+PACKAGES_LIBS="libaudit1 libaudit-common libcap-ng0 libcom-err2 libdevmapper1.02.1 libext2fs2 libffi7 libfuse2 libfuse3-3 
+libgcrypt20 libglib2.0-0 libgmp10 libgnutls30 libgpg-error0 libgpm2 libhogweed6 libidn2-0 libnettle8 libnewt0.52 
+libntfs-3g883 libp11-kit0 libpam0g libpam-modules libparted2 libpcre3 libreadline8 libssh2-1 libtasn1-6 libtextwrap1 
+libunistring2 libuuid1 libidn11 libpci3 libnl-3-200 libnl-genl-3-200 libfdisk1 libsmartcols1 liblzo2-2 libedit2 "
+
+PACKAGES="chntpw dosfstools e2fsprogs exfatprogs btrfs-progs reiser4progs reiserfsprogs nmon dmidecode dmsetup fuse fuse3 
+logsave mc mc-data nano nilfs-tools ntfs-3g partclone parted readline-common lynx lynx-common pciutils pci.ids htop testdisk 
+syslinux syslinux-efi syslinux-common syslinux-utils mtools extlinux fdisk dialog "
+
+rm packages/tools/*.deb
+cd packages/tools
+
+echo "[pkg-tools] Downloading packages"
+apt-get download $PACKAGES
+
+echo "[pkg-tools] Downloading package libs"
+apt-get download $PACKAGES_LIBS
+
+echo "[pkg-tools] Downloading externel packages"
+wget -N https://github.com/chenall/grub4dos/releases/download/0.4.6a/grub4dos-0.4.6a-2022-01-18.7z
+
+cd ../..
