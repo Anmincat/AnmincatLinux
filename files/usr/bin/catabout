@@ -1,0 +1,37 @@
+#!/bin/sh
+#	Catabout is a GTKdialog based script, information about this distribution and list of packages.
+#	Made by Supphakit Duanghoy (c) 2022
+
+if [ -f "/tmp/catabout.version" ]; then
+	rm /tmp/catabout.version
+fi
+
+. /etc/os-release
+echo "Anmincat $VERSION" > /tmp/catabout.version
+
+export MAIN_DIALOG='
+<window title="About Anmincat">
+<vbox>
+	<text>
+		<input file>/tmp/catabout.version</input>
+	</text>
+	<text label="A Mini Live Linux Distribution for system rescue."></text>
+	<text label="Built from Devuan, Debian and MX Linux packages"></text>
+	<text label=""></text>
+	<text label="Made by Supphakit Duanghoy (c) 2022"></text>
+	<hbox align="center">
+		<button label="License">
+			<action>catabout.license</action>
+		</button>
+		<button label="Installed packages">
+			<action>catabout.installedpkgs</action>
+		</button>
+		<button label="Close">
+		</button>
+	</hbox>
+</vbox>
+</window>
+'
+
+gtkdialog -c -p MAIN_DIALOG
+rm /tmp/catabout.version

@@ -1,0 +1,70 @@
+#!/bin/bash
+#	setup-keyboard-layout is a ncurses dialog based keyboard layout changer.
+#	Made by Supphakit Dunaghoy (c) 2022
+
+DIALOG_CANCEL=1
+DIALOG_ESC=255
+HEIGHT=20
+WIDTH=0
+
+while true; do
+  exec 3>&1
+  selection=$(dialog \
+    --backtitle "Anmincat Linux - keyboard layout setup" \
+    --clear \
+    --menu "Select your keyboard layout. (Default is English US)" $HEIGHT $WIDTH 4 \
+    "DE" "Deutsch (qwertz)" \
+    "EN_UK" "English UK" \
+    "EN_US" "English US" \
+    "EN_US_DVORAK" "English US (dvorak)" \
+    "FR_LATIN" "Francais (azerty)" \
+    2>&1 1>&3)
+  exit_status=$?
+  exec 3>&-
+  case $exit_status in
+	$DIALOG_CANCEL)
+	clear
+	echo "Program terminated."
+	if [ ! -f "/etc/KBLAYOUT" ]; then
+		echo "Fallback to English US."
+		printf "kmap=qwerty/us.kmap\nxkbmap=us" > /etc/KBLAYOUT
+	else
+		echo "Fallback to default."
+	fi
+	exit
+	;;
+	$DIALOG_ESC)
+	clear
+	echo "Program aborted." >&2
+	if [ ! -f "/etc/KBLAYOUT" ]; then
+		echo "Fallback to English US."
+		printf "kmap=qwerty/us.kmap\nxkbmap=us" > /etc/KBLAYOUT
+	else
+		echo "Fallback to default."
+	fi
+	exit
+	;;
+  esac
+  case $selection in
+    DE )
+	printf "kmap=qwertz/de-latin1.kmap\nxkbmap=de" > /etc/KBLAYOUT
+	exit
+      ;;
+    EN_UK )
+	printf "kmap=qwerty/en.kmap\nxkbmap=gb" > /etc/KBLAYOUT
+	exit
+      ;;
+    EN_US )
+	printf "kmap=qwerty/us.kmap\nxkbmap=us" > /etc/KBLAYOUT
+	exit
+      ;;
+    EN_US_DVORAK )
+	printf "kmap=dvorak/dvorak.kmap\nxkbmap=dvorak" > /etc/KBLAYOUT
+	exit
+      ;;
+    FR_LATIN )
+	printf "kmap=azerty/fr.kmap\nxkbmap=fr" > /etc/KBLAYOUT
+	exit
+      ;;
+  esac
+done

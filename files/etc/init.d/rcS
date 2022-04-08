@@ -1,0 +1,64 @@
+#!/bin/busybox ash
+#	rcS script for Anmincat Linux
+#	Modified by Supphakit Duanghoy (c) 2022
+#	Original from https://github.com/cross-lfs/bootscripts-embedded/blob/master/clfs/rc.d/startup
+
+. /etc/init.d/services/functions
+. /etc/os-release
+
+dmesg -n 1
+clear
+echo ' /\_/\'
+echo '( o.o )'
+echo ' > ^ <'
+echo "Anmincat ${VERSION} Running Linux Kernel $(uname -r)."
+echo "Anmincat Linux is free (GPL) live mini rescue system."
+echo "Remember! Anmincat comes with ABSOLUTELY NO WARRANTY!"
+echo
+sleep 2
+
+mount -t devtmpfs none /dev
+mount -t proc none /proc
+mkdir -p /dev/pts
+mkdir -p /dev/shm
+
+echo -n "Mounting fstab..."
+mount -a
+check_status
+
+if [ -x /sbin/swapon ]; then
+	echo -n "Enabling swap space..."
+	swapon -a
+	check_status
+fi
+
+echo -n "Remounting root rw..."
+mount -o remount,rw /
+check_status
+
+echo -n "Setting language to C..."
+LANG=C
+export LANG LC_ALL
+check_status
+
+echo -n "Setting hostname to $(cat /etc/hostname)..."
+hostname $(cat /etc/hostname)
+check_status
+
+echo -n "Setting up interface lo..."
+ifconfig lo up 127.0.0.1
+check_status
+
+echo "Starting services..."
+
+for i in /etc/init.d/start/*
+do
+	if [ -x $i ]; then
+		$i start
+	fi
+done
+
+echo
+echo "Welcome to Anmincat $VERSION!"
+echo
+exit 0

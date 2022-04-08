@@ -1,0 +1,28 @@
+#!/bin/sh
+
+export MAIN_DIALOG='
+<window title="Powermenu">
+<vbox>
+<text>
+	<label>What do you want to do?</label>
+</text>
+<hbox>
+	<button>
+		<label>Power Off</label>
+		<action>poweroff</action>
+	</button>
+	<button>
+		<label>Reboot</label>
+		<action>reboot</action>
+	</button>
+	<button>
+		<label>Exit to TTY</label>
+		<action>kill $(pgrep Xorg)</action>
+	</button>
+	<button cancel></button>
+</hbox>
+</vbox>
+</window>
+'
+
+gtkdialog -c --program=MAIN_DIALOG

@@ -1,0 +1,27 @@
+#!/bin/busybox ash
+# https://github.com/cross-lfs/bootscripts-embedded/blob/master/clfs/rc.d/shutdown
+. /etc/init.d/services/functions
+
+clear
+
+echo "Stopping services..."
+
+for i in /etc/rc.d/stop/*
+do
+	if [ -x $i ]; then
+		$i stop
+	fi
+done
+
+if [ -x /sbin/swapoff ]; then
+	echo -n "Disabling swap space..."
+	swapoff -a
+	check_status
+fi
+
+echo -n "Syncing all filesystems..."
+sync
+check_status
+
+echo -n "Unmounting all filesystems..."
+umount -a -r

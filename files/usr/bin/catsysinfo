@@ -1,0 +1,86 @@
+#!/bin/sh
+#	CatSysINFO is a GTKdialog based script, simple and stupid advanced system information lookup.
+#	System information took from /sys/ and /proc/ that created by Linux Kernel, some from dmesg, mount ...
+#	Made by Supphakit Duanghoy (c) 2022
+
+if [ -d "/tmp/catsysinfo" ]; then
+	rm -rf /tmp/catsysinfo
+fi
+
+mkdir /tmp/catsysinfo
+printf "$(dmesg)" > /tmp/catsysinfo/dmesg
+printf "/proc/modules\n$(cat /proc/modules)" > /tmp/catsysinfo/modules
+printf "/proc/cpuinfo\n$(cat /proc/cpuinfo)" > /tmp/catsysinfo/cpuinfo
+printf "/proc/meminfo\n$(cat /proc/meminfo)" > /tmp/catsysinfo/meminfo
+printf "/proc/devices\n$(cat /proc/devices)" > /tmp/catsysinfo/devices
+printf "/proc/partitions\n$(cat /proc/partitions)" > /tmp/catsysinfo/partitions
+printf "$(mount)" > /tmp/catsysinfo/mounts
+printf "/proc/filesystems\n$(cat /proc/filesystems)" > /tmp/catsysinfo/filesystems
+printf "/proc/swaps\n$(cat /proc/swaps)" > /tmp/catsysinfo/swaps
+
+export MAIN_DIALOG='
+<window title="CatSysINFO">
+<notebook tab-labels="Kernel Bootlog (dmesg)|Loaded modules|CPU|Memory|Devices|Partitions|Active mounts|Active filesytems|Active swap">
+
+<vbox>
+	<edit>
+		<input file>/tmp/catsysinfo/dmesg</input>
+		<width>850</width>
+		<height>550</height>
+	</edit>
+</vbox>
+
+<vbox>
+	<edit>
+		<input file>/tmp/catsysinfo/modules</input>
+	</edit>
+</vbox>
+
+<vbox>
+	<edit>
+		<input file>/tmp/catsysinfo/cpuinfo</input>
+	</edit>
+</vbox>
+
+<vbox>
+	<edit>
+		<input file>/tmp/catsysinfo/meminfo</input>
+	</edit>
+</vbox>
+
+<vbox>
+	<edit>
+		<input file>/tmp/catsysinfo/devices</input>
+	</edit>
+</vbox>
+
+<vbox>
+	<edit>
+		<input file>/tmp/catsysinfo/partitions</input>
+	</edit>
+</vbox>
+
+<vbox>
+	<edit>
+		<input file>/tmp/catsysinfo/mounts</input>
+	</edit>
+</vbox>
+
+<vbox>
+	<edit>
+		<input file>/tmp/catsysinfo/filesystems</input>
+	</edit>
+</vbox>
+
+<vbox>
+	<edit>
+		<input file>/tmp/catsysinfo/swaps</input>
+	</edit>
+</vbox>
+
+</notebook>
+</window>
+'
+
+gtkdialog -c -p MAIN_DIALOG
+rm -rf /tmp/catsysinfo

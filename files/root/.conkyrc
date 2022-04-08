@@ -1,0 +1,62 @@
+conky.config = {
+    alignment = 'top_right',
+    background = false,
+    border_width = 1,
+    cpu_avg_samples = 2,
+    default_color = 'white',
+    default_outline_color = 'white',
+    default_shade_color = 'white',
+    double_buffer = true,
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    extra_newline = false,
+    gap_x = 60,
+    gap_y = 60,
+    minimum_height = 5,
+    minimum_width = 5,
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = false,
+    out_to_ncurses = false,
+    out_to_stderr = false,
+    out_to_x = true,
+    own_window = true,
+    own_window_class = 'Conky',
+    own_window_type = 'desktop',
+    own_window_transparent = true,
+    show_graph_range = false,
+    show_graph_scale = false,
+    stippled_borders = 0,
+    update_interval = 1.0,
+    uppercase = false,
+    use_spacer = 'none',
+    use_xft = true,
+}
+
+conky.text = [[
+${color grey}Anmincat 1.5
+${color grey}Host:$color $nodename
+${color grey}Kernel:$color GNU/Linux $kernel
+${color grey}Uptime:$color $uptime
+${color grey}Processes:$color $processes
+   ${color grey}Running:$color $running_processes
+${color grey}Load:$color $loadavg
+${color red}$hr
+${color grey}CPU Usage:$color $cpu%
+   ${color grey}$cpubar
+${color grey}RAM Usage:$color $mem%
+   ${color grey}$membar
+${color grey}Swap Usage:$color $swap/$swapmax - $swapperc% 
+   ${color grey}${swapbar 4}
+${color grey}Networking:
+	Up:$color ${upspeed} ${color grey} - Down:$color ${downspeed}
+${color green}$hr
+${color grey}Filesystem:$color RootFS
+   ${color grey}Size:$color $fs_size
+   ${color grey}Used:$color $fs_used
+   ${color grey}Free:$color $fs_free
+${color blue}$hr
+${color grey}Time:$color $time
+]]

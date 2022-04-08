@@ -1,0 +1,17 @@
+#!/bin/sh
+#	Catabout.license is a part of catabout, information about license.
+#	Made by Supphakit Duanghoy (c) 2022
+
+export MAIN_DIALOG='
+<window title="License">
+<vbox>
+	<edit>
+		<input file>/root/LICENSE</input>
+		<width>450</width>
+		<height>150</height>
+	</edit>
+</vbox>
+</window>
+'
+
+gtkdialog -c -p MAIN_DIALOG

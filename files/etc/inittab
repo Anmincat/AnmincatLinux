@@ -1,0 +1,7 @@
+::sysinit:/etc/init.d/rcS
+
+tty1::respawn:/bin/login -f root
+tty2::askfirst:/bin/login -f root
+
+::restart:/sbin/init
+::shutdown:/etc/init.d/rc.shutdown

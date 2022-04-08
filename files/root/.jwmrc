@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<JWM>
+	<!-- Menu. -->
+	<RootMenu onroot="1" height="22">
+		<Menu icon="" label="File Managers">
+			<Program icon="" label="MidnightCommander">xterm -e mc</Program>
+			<Program icon="" label="PCManFM">pcmanfm</Program>
+			<Program icon="" label="Xarchiver">xarchiver</Program>
+		</Menu>
+		<Menu icon="" label="Terminals">
+			<Program icon="" label="Xterm (ash)">xterm -e ash</Program>
+			<Program icon="" label="Xterm (bash)">xterm -e bash</Program>
+		</Menu>
+		<Menu icon="" label="Editors">
+			<Program icon="" label="Leafpad">leafpad</Program>
+			<Program icon="" label="Nano">xterm -e nano</Program>
+			<Program icon="" label="Vi (Vim busybox)">xterm -e vi</Program>
+		</Menu>
+		<Menu icon="" label="Viewer">
+			<Program icon="" label="Viewnior">viewnior</Program>
+		</Menu>
+		<Menu icon="" label="Networking">
+			<Program icon="" label="Setup Ethernet Network (LAN)">viewnior</Program>
+			<Program icon="" label="Setup Wireless Network (WiFi)">viewnior</Program>
+		</Menu>
+		<Separator/>
+		<Menu icon="" label="Harddisk / Partitions / Filesystems">
+			<Program icon="" label="Parted">xterm -e parted</Program>
+			<Program icon="" label="Gparted">gparted</Program>
+		</Menu>
+		<Menu icon="" label="Recovery">
+			<Program icon="" label="Photorec">xterm -e photorec</Program>
+			<Program icon="" label="Testdisk">xterm -e testdisk</Program>
+		</Menu>
+		<Menu icon="" label="Bootloaders">
+			<Program icon="" label="Syslinux Installer (Prompt & Automatic)">xterm -e nmon</Program>
+			<Program icon="" label="Extlinux Installer (Prompt & Automatic)">xterm -e nmon</Program>
+			<Program icon="" label="Grub4dos Installer (Prompt & Automatic)">xterm -e nmon</Program>
+		</Menu>
+		<Menu icon="" label="Monitoring">
+			<Program icon="" label="Nmon">xterm -e nmon</Program>
+			<Program icon="" label="Htop">xterm -e htop</Program>
+		</Menu>
+		<Menu icon="" label="System Information">
+			<Program icon="" label="CatSysINFO (Linux Information)">catsysinfo</Program>
+			<Program icon="" label="HardInfo">hardinfo</Program>
+		</Menu>
+		<Menu icon="" label="Miscellaneous">
+			<Program icon="" label="Create Anmincat LiveUSB (Installed USB required)">xterm -e nmon</Program>
+			<Program icon="" label="Create Minimal Debian LiveUSB (Network reqiured)">xterm -e nmon</Program>
+			<Program icon="" label="Create Minimal Devuan LiveUSB (Network reqiured)">xterm -e nmon</Program>
+			<Program icon="" label="Create Minimal Archlinux LiveUSB (Network reqiured)">xterm -e nmon</Program>
+			<Program icon="" label="Install Debian to HDD (Network reqiured)">xterm -e nmon</Program>
+			<Program icon="" label="Install Devuan to HDD (Network reqiured)">xterm -e nmon</Program>
+			<Program icon="" label="Install Archlinux to HDD (Network reqiured)">xterm -e nmon</Program>
+			<Program icon="" label="Create Ventoy USB (Network reqiured)">xterm -e nmon</Program>
+		</Menu>
+		<Separator/>
+		<Program icon="" label="About">catabout</Program>
+		<Restart label="Restart JWM" icon=""/>
+		<Program icon="" label="Exit...">powermenu</Program>
+	</RootMenu>
+
+	<!-- Tray at the bottom. -->
+	<Tray x="0" y="-1" height="25" autohide="off">
+
+		<TrayButton icon="pan-up-symbolic.symbolic.png" label="Applications">root:1</TrayButton>
+		<Spacer width="5"/>
+		<!-- quick launch area. -->
+		<TrayButton icon="utilities-terminal-symbolic.symbolic.png" label="Term">exec:xterm</TrayButton>
+		<Spacer width="3"/>
+		<TrayButton icon="system-file-manager-symbolic.symbolic.png" label="File">exec:pcmanfm</TrayButton>
+		<Spacer width="3"/>
+		<TrayButton icon="text-editor-symbolic.symbolic.png" label="Edit">exec:leafpad</TrayButton>
+		<Spacer width="3"/>
+		<TrayButton icon="window-restore-symbolic.symbolic.png" popup="Show Desktop">showdesktop</TrayButton>
+		<Spacer width="10"/>
+
+		<!-- Config note: You can uncomment this to get a pager (multiple desktops) -->
+		<Pager labeled="true"/>
+
+		<TaskList maxwidth="256"/>
+
+		<Spacer width="10"/>
+		<Dock/>
+		<Clock format="%H:%M:%S"></Clock>
+		<Spacer width="3"/>
+
+	</Tray>
+
+	<!-- Visual Styles. -->
+    <WindowStyle>
+        <Width>4</Width>
+        <Height>21</Height>
+        <Corner>3</Corner>
+        <Foreground>#ADADAD</Foreground>
+        <Background>#636363:#2C2C2C</Background>
+        <Outline>#000000</Outline>
+        <Opacity>0.5</Opacity>
+        <Active>
+            <Foreground>#3C3C3C</Foreground>
+            <Background>#CECECE</Background>
+            <Outline>#000000</Outline>
+            <Opacity>1.0</Opacity>
+        </Active>
+    </WindowStyle>
+    <TrayStyle group="true" list="all">
+        <Background>#FFFFFF</Background>
+        <Foreground>#3C3C3C</Foreground>
+        <Outline>#CECECE</Outline>
+        <Opacity>0.75</Opacity>
+    </TrayStyle>
+    <TaskListStyle>
+      <Active>
+        <Foreground>#FFFFFF</Foreground>
+        <Background>#808080</Background>
+      </Active>
+      <Foreground>#000000</Foreground>
+      <Background>#FFFFFF</Background>
+    </TaskListStyle>
+    <PagerStyle>
+        <Outline>#000000</Outline>
+        <Foreground>#555555</Foreground>
+        <Background>#333333</Background>
+        <Text>#FFFFFF</Text>
+        <Active>
+            <Foreground>#0077CC</Foreground>
+            <Background>#004488</Background>
+        </Active>
+    </PagerStyle>
+    <MenuStyle>
+        <Foreground>#000000</Foreground>
+        <Background>#FFFFFF</Background>
+        <Outline>#000000</Outline>
+        <Active>
+            <Foreground>#FFFFFF</Foreground>
+            <Background>#808080</Background>
+        </Active>
+        <Opacity>0.85</Opacity>
+    </MenuStyle>
+    <PopupStyle>
+        <Foreground>#000000</Foreground>
+        <Background>#999999</Background>
+    </PopupStyle>
+
+	<!-- Path where icons can be found.  -->
+	<IconPath>/usr/share/icons</IconPath>
+	<IconPath>/usr/share/pixmaps</IconPath>
+	<IconPath>/usr/local/share/jwm</IconPath>
+	<IconPath>/usr/share/icons/Adwaita/24x24/ui</IconPath>
+	<IconPath>/usr/share/icons/Adwaita/24x24/apps</IconPath>
+
+	<!-- Desktop Background. -->
+	<Desktops width="2" height="1">
+		<Background type="image">/usr/share/wallpapers/default.jpg</Background>
+	</Desktops>
+
+	<!-- Double click speed (in milliseconds) -->
+	<DoubleClickSpeed>400</DoubleClickSpeed>
+
+	<!-- Double click delta (in pixels) -->
+	<DoubleClickDelta>2</DoubleClickDelta>
+
+	<!-- The focus model (sloppy or click) -->
+	<FocusModel>click</FocusModel>
+
+	<!-- The snap mode (none, screen, or border) -->
+	<SnapMode distance="10">border</SnapMode>
+
+	<!-- The move mode (outline or opaque) -->
+	<MoveMode>opaque</MoveMode>
+
+	<!-- The resize mode (outline or opaque) -->
+	<ResizeMode>opaque</ResizeMode>
+
+	<!-- Key bindings -->
+	<Key key="Up">up</Key>
+	<Key key="Down">down</Key>
+	<Key key="Right">right</Key>
+	<Key key="Left">left</Key>
+	<Key key="h">left</Key>
+	<Key key="j">down</Key>
+	<Key key="k">up</Key>
+	<Key key="l">right</Key>
+	<Key key="Return">select</Key>
+	<Key key="Escape">escape</Key>
+
+	<Key mask="A" key="Tab">nextstacked</Key>
+	<Key mask="A" key="F4">close</Key>
+	<Key mask="A" key="#">desktop#</Key>
+	<Key mask="A" key="F1">root:1</Key>
+	<Key mask="A" key="F3">root:1</Key>
+	<Key mask="A" key="space">window</Key>
+	<Key mask="A" key="F10">maximize</Key>
+	<Key mask="CA" key="Right">rdesktop</Key>
+	<Key mask="4" key="Tab">rdesktop</Key>
+	<Key mask="CA" key="Left">ldesktop</Key>
+	<Key mask="CA" key="Up">udesktop</Key>
+	<Key mask="CA" key="Down">ddesktop</Key>
+	<Key mask="CA" key="D">showdesktop</Key>
+	<Key mask="4" key="D">showdesktop</Key>
+
+	<Key mask="CA" key="T">exec:xterm</Key>
+	<Key mask="CA" key="E">exec:xfe</Key>
+
+	<Key mask="CAS" key="R">exec:jwm -restart</Key>
+
+	<StartupCommand>
+		conky
+	</StartupCommand>
+
+</JWM>

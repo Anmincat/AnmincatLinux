@@ -1,0 +1,47 @@
+#!/bin/ash
+#
+# eudev service script, meant to run in init.
+#
+
+. /etc/init.d/services/functions
+
+case "$1" in
+	start)
+		umount -n -l /dev/pts
+		ln -sf /bin/true /dev/MAKEDEV
+		udevadm info --cleanup-db
+		echo -n "Starting eudev:"
+		start-stop-daemon --start --name eudev --exec /sbin/udevd --quiet -- --daemon
+		check_status
+		echo -n "Initializing hotplug events (subsystems):"
+		udevadm trigger --type=subsystems --action=add
+		check_status
+		echo -n "Initializing hotplug events (devices):"
+		udevadm trigger --type=devices --action=add
+		check_status
+		echo -n "Settle eudev:"
+		udevadm settle
+		check_status
+		echo -n "Remounting /dev/pts"
+		mount -t devpts /dev/pts
+		check_status
+	;;
+	stop)
+		echo -n "Stopping eudev:"
+		start-stop-daemon --stop --name eudev --quiet --oknodo --retry 5
+		check_status
+	;;
+	status)
+		if [ $(pgrep udevd) == "" ]; then
+			echo "eudev is not running."
+		else
+			echo "eudev running at $(pgrep udevd)."
+		fi
+	;;
+	monitor)
+		udevadm monitor
+	;;
+	*)
+		echo "Usage: $0 {start|stop|status|monitor}"
+	exit 1
+esac

@@ -1,0 +1,17 @@
+#!/bin/sh
+#	Catabout.installedpkgs is a part of catabout, list of installed packages.
+#	Made by Supphakit Duanghoy (c) 2022
+
+export MAIN_DIALOG='
+<window title="Installed packages">
+<vbox>
+	<edit>
+		<input file>/root/INSTALLED_PACKAGES</input>
+		<width>550</width>
+		<height>350</height>
+	</edit>
+</vbox>
+</window>
+'
+
+gtkdialog -c -p MAIN_DIALOG

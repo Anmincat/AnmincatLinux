@@ -1,0 +1,7 @@
+# /etc/profile: system-wide .profile file for the Bourne shell.
+
+PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
+export PATH
+
+LANG=C
+export LANG LC_ALL
