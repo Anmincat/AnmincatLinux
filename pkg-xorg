@@ -1,5 +1,4 @@
 #!/bin/sh
-# excut xorg
 
 PACKAGES_LIBS="libaudit-common libbrotli1 libbsd0 libcap2 libdbus-1-3 libdrm2 libdrm-common libedit2 
 libegl1 libelf1 libepoxy0 libevdev2 libexpat1 libfontconfig1 libfontenc1 libfreetype6 libgbm1 libgcc-s1 

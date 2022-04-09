@@ -1,5 +1,4 @@
 #!/bin/sh
-# excut base-system
 
 PACKAGES_LIBS="libaudit1 libaudit-common libcap-ng0 libcom-err2 libdevmapper1.02.1 libext2fs2 libffi7 libfuse2 libfuse3-3 
 libgcrypt20 libglib2.0-0 libgmp10 libgnutls30 libgpg-error0 libgpm2 libhogweed6 libidn2-0 libnettle8 libnewt0.52 

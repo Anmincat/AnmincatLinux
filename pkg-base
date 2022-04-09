@@ -1,5 +1,4 @@
 #!/bin/sh
-# excut base-system
 
 PACKAGES_LIBS="libblkid1 libbz2-1.0 libc6 libc-bin libcrypt1 libeudev1 libkmod2 liblzma5 libmagic1 libmagic-mgc libncurses6 
 libncursesw6 libpcre2-8-0 libselinux1 libsemanage1 libsemanage-common libsepol1 libslang2 libssl1.1 libtinfo6 lsb-base 
