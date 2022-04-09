@@ -29,7 +29,6 @@ check() {
 	echo -n "Coreutils: "; chown --version | head -n1 | cut -d")" -f2
 	diff --version | head -n1
 	find --version | head -n1
-	gawk --version | head -n1
 	
 	if [ -h /usr/bin/awk ]; then
 	  echo "/usr/bin/awk -> `readlink -f /usr/bin/awk`";
