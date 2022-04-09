@@ -5,7 +5,7 @@ echo "Now cleaning system..."
 echo
 
 # copy files to system/
-echo "[clean-system] Removing unused stuffs..."
+echo "[clean-system] Removing unneeded stuffs..."
 rm -rf system/usr/share/man
 rm -rf system/usr/share/doc
 rm -rf system/usr/share/lintian
@@ -65,7 +65,7 @@ rm -rf system/usr/share/themes/Greybird/xfce-notify-4.0
 rm -rf system/usr/share/themes/Greybird/xfwm4
 rm -rf system/usr/share/themes/Greybird/Greybird.emerald
 
-echo "[clean-system] Removing unused gconv"
+echo "[clean-system] Removing unneeded gconv"
 mv -v system/usr/lib/x86_64-linux-gnu/gconv/ANSI_X3.110.so system/usr/lib/x86_64-linux-gnu/gconv/ANSI_X3.110.so.k
 mv -v system/usr/lib/x86_64-linux-gnu/gconv/CP1251.so system/usr/lib/x86_64-linux-gnu/gconv/CP1251.so.k
 mv -v system/usr/lib/x86_64-linux-gnu/gconv/CP1252.so system/usr/lib/x86_64-linux-gnu/gconv/CP1252.so.k
@@ -95,7 +95,7 @@ mv -v system/usr/lib/x86_64-linux-gnu/gconv/KOI8-U.so.k system/usr/lib/x86_64-li
 mv -v system/usr/lib/x86_64-linux-gnu/gconv/UNICODE.so.k system/usr/lib/x86_64-linux-gnu/gconv/UNICODE.so
 mv -v system/usr/lib/x86_64-linux-gnu/gconv/UTF-16.so.k system/usr/lib/x86_64-linux-gnu/gconv/UTF-16.so
 
-echo "[clean-system] Removing unused *.a in /usr/lib"
+echo "[clean-system] Removing unneeded *.a in /usr/lib"
 rm -v system/usr/lib/x86_64-linux-gnu/*.a
 rm -v system/usr/lib/*.a
 

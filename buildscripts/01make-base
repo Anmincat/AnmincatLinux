@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo
-echo "Now making base system..."
+echo "Now installing base system..."
 echo
 
 for packages in packages/base/*.deb; do

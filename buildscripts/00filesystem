@@ -1,5 +1,5 @@
 #!/bin/sh
-printf "[filesystem] Checking if old system directory is existed..."
+printf "[filesystem] Checking if old system directory is available..."
 if [ -d ${PWD}/system ]; then
 	printf "yes, deleting...\n"
 	rm -rf system

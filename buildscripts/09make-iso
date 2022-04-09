@@ -6,7 +6,7 @@ echo
 echo "Now making ISO bootable image..."
 echo
 
-printf "[iso] Checking if old cdroot directory is existed..."
+printf "[iso] Checking if old cdroot directory is available..."
 if [ -d ${PWD}/cdroot ]; then
 	printf "yes, deleting...\n"
 	rm -rf cdroot
