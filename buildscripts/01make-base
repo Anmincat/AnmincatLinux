@@ -85,5 +85,6 @@ chmod 600 system/etc/shadow
 chmod 644 system/etc/hosts
 chmod 644 system/etc/profile
 chmod 755 system/usr/share/udhcpc/default.script
+chmod 755 system/root/.config/conky/get_version.sh
 
 echo "[base] Finished!"

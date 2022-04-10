@@ -36,7 +36,7 @@ conky.config = {
 }
 
 conky.text = [[
-${color grey}Anmincat 1.5
+${color grey}${exec /root/.config/conky/get_version.sh}
 ${color grey}Host:$color $nodename
 ${color grey}Kernel:$color GNU/Linux $kernel
 ${color grey}Uptime:$color $uptime
