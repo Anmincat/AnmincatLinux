@@ -49,7 +49,8 @@ check() {
 	tar --version | head -n1
 	makeinfo --version | head -n1
 	xz --version | head -n1
-
+	xorriso --version | head -n1
+	isohybrid --version | head -n1
 	
 }
 
