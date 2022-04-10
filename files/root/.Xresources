@@ -1,3 +1,4 @@
 xterm*faceName: DejaVu Sans Mono
-xterm*faceSize: 11
+xterm*faceSize: 10
 xterm*background: rgb:00/00/00
+xterm*foreground: white
