@@ -46,14 +46,9 @@
 			<Program icon="" label="HardInfo">hardinfo</Program>
 		</Menu>
 		<Menu icon="" label="Miscellaneous">
-			<Program icon="" label="Create Anmincat LiveUSB (Installed USB required)">xterm -e nmon</Program>
-			<Program icon="" label="Create Minimal Debian LiveUSB (Network reqiured)">xterm -e nmon</Program>
-			<Program icon="" label="Create Minimal Devuan LiveUSB (Network reqiured)">xterm -e nmon</Program>
-			<Program icon="" label="Create Minimal Archlinux LiveUSB (Network reqiured)">xterm -e nmon</Program>
-			<Program icon="" label="Install Debian to HDD (Network reqiured)">xterm -e nmon</Program>
-			<Program icon="" label="Install Devuan to HDD (Network reqiured)">xterm -e nmon</Program>
-			<Program icon="" label="Install Archlinux to HDD (Network reqiured)">xterm -e nmon</Program>
+			<Program icon="" label="Create Anmincat LiveUSB (Installed Anmincat USB required)">xterm -e nmon</Program>
 			<Program icon="" label="Create Ventoy USB (Network reqiured)">xterm -e nmon</Program>
+			<Program icon="" label="Universal Linux Installer (Network required)">xterm -e nmon</Program>
 		</Menu>
 		<Separator/>
 		<Program icon="" label="About">catabout</Program>
