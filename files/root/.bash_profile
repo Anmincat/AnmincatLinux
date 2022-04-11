@@ -1,19 +1,17 @@
 # .bash_profile
 
-# Launch keyboard layout setup if setuplayout is in boot args.
+# Launch keyboard layout setup if setuplayout is in boot parameters.
 if [[ $(cat /proc/cmdline | xargs -n1 | grep setuplayout) = "" ]]; then
 	if [ ! -f "/etc/KBLAYOUT" ]; then
 		printf "kmap=qwerty/us.kmap\nxkbmap=us" > /etc/KBLAYOUT
+		. /etc/KBLAYOUT
+		loadkmap < /usr/share/kmap/$kmap
 	fi
 else
 	if [ ! -f "/etc/KBLAYOUT" ]; then
 		/sbin/setup-keyboard-layout
 	fi
 fi
-
-# Set keyboard layout
-. /etc/KBLAYOUT
-loadkmap < /usr/share/kmap/$kmap
 
 # XDG
 export XDG_MENU_PREFIX=""
