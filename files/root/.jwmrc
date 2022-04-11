@@ -2,58 +2,60 @@
 <JWM>
 	<!-- Menu. -->
 	<RootMenu onroot="1" height="22">
-		<Menu icon="" label="File Managers">
-			<Program icon="" label="MidnightCommander">xterm -e mc</Program>
-			<Program icon="" label="PCManFM">pcmanfm</Program>
-			<Program icon="" label="Xarchiver">xarchiver</Program>
+		<Menu icon="system-file-manager.png" label="File Managers">
+			<Program icon="mc.xpm" label="MidnightCommander">xterm -e mc</Program>
+			<Program icon="system-file-manager.png" label="PCManFM">pcmanfm</Program>
+			<Program icon="xarchiver.xpm" label="Xarchiver">xarchiver</Program>
 		</Menu>
-		<Menu icon="" label="Terminals">
-			<Program icon="" label="Xterm (ash)">xterm -e ash</Program>
-			<Program icon="" label="Xterm (bash)">xterm -e bash</Program>
+		<Menu icon="utilities-terminal.png" label="Terminals">
+			<Program icon="xterm-color_48x48.xpm" label="Xterm (ash)">xterm -e ash</Program>
+			<Program icon="xterm-color_48x48.xpm" label="Xterm (bash)">xterm -e bash</Program>
 		</Menu>
-		<Menu icon="" label="Editors">
-			<Program icon="" label="Leafpad">leafpad</Program>
-			<Program icon="" label="Nano">xterm -e nano</Program>
-			<Program icon="" label="Vi (Vim busybox)">xterm -e vi</Program>
+		<Menu icon="accessories-text-editor.png" label="Editors">
+			<Program icon="leafpad.xpm" label="Leafpad">leafpad</Program>
+			<Program icon="mcedit.xpm" label="MCedit">xterm -e mcedit</Program>
+			<Program icon="xterm-color_48x48.xpm" label="Nano">xterm -e nano</Program>
+			<Program icon="xterm-color_48x48.xpm" label="Vi (Vim busybox)">xterm -e vi</Program>
 		</Menu>
-		<Menu icon="" label="Viewer">
-			<Program icon="" label="Viewnior">viewnior</Program>
+		<Menu icon="applets-screenshooter.png" label="Viewer">
+			<Program icon="viewnior.xpm" label="Viewnior">viewnior</Program>
 		</Menu>
-		<Menu icon="" label="Networking">
-			<Program icon="" label="Setup Ethernet Network (LAN)">viewnior</Program>
-			<Program icon="" label="Setup Wireless Network (WiFi)">viewnior</Program>
-		</Menu>
-		<Separator/>
-		<Menu icon="" label="Harddisk / Partitions / Filesystems">
-			<Program icon="" label="Parted">xterm -e parted</Program>
-			<Program icon="" label="Gparted">gparted</Program>
-		</Menu>
-		<Menu icon="" label="Recovery">
-			<Program icon="" label="Photorec">xterm -e photorec</Program>
-			<Program icon="" label="Testdisk">xterm -e testdisk</Program>
-		</Menu>
-		<Menu icon="" label="Bootloaders">
-			<Program icon="" label="Syslinux Installer (Prompt & Automatic)">xterm -e nmon</Program>
-			<Program icon="" label="Extlinux Installer (Prompt & Automatic)">xterm -e nmon</Program>
-			<Program icon="" label="Grub4dos Installer (Prompt & Automatic)">xterm -e nmon</Program>
-		</Menu>
-		<Menu icon="" label="Monitoring">
-			<Program icon="" label="Nmon">xterm -e nmon</Program>
-			<Program icon="" label="Htop">xterm -e htop</Program>
-		</Menu>
-		<Menu icon="" label="System Information">
-			<Program icon="" label="CatSysINFO (Linux Information)">catsysinfo</Program>
-			<Program icon="" label="HardInfo">hardinfo</Program>
-		</Menu>
-		<Menu icon="" label="Miscellaneous">
-			<Program icon="" label="Create Anmincat LiveUSB (Installed Anmincat USB required)">xterm -e nmon</Program>
-			<Program icon="" label="Create Ventoy USB (Network reqiured)">xterm -e nmon</Program>
-			<Program icon="" label="Universal Linux Installer (Network required)">xterm -e nmon</Program>
+		<Menu icon="network-idle.png" label="Networking">
+			<Program icon="network-wired.png" label="Setup Ethernet Network (LAN)">xterm -geometry 80x10+10+2 -e setup-ethernet</Program>
+			<Program icon="network-wireless.png" label="Setup Wireless Network (WiFi)">viewnior</Program>
 		</Menu>
 		<Separator/>
-		<Program icon="" label="About">catabout</Program>
-		<Restart label="Restart JWM" icon=""/>
-		<Program icon="" label="Exit...">powermenu</Program>
+		<Menu icon="drive-harddisk.png" label="Harddisk / Partitions / Filesystems">
+			<Program icon="gparted.png" label="GParted">gparted</Program>
+			<Program icon="xterm-color_48x48.xpm" label="Cfdisk">xterm -e cfdisk</Program>
+			<Program icon="xterm-color_48x48.xpm" label="Parted">xterm -e parted</Program>
+		</Menu>
+		<Menu icon="system-search.png" label="Recovery">
+			<Program icon="xterm-color_48x48.xpm" label="Photorec">xterm -e photorec</Program>
+			<Program icon="xterm-color_48x48.xpm" label="Testdisk">xterm -e testdisk</Program>
+		</Menu>
+		<Menu icon="system-run.png" label="Bootloaders">
+			<Program icon="system-run.png" label="SYSLINUX Installer (Prompt & Automatic)">xterm -e nmon</Program>
+			<Program icon="system-run.png" label="EXTLINUX Installer (Prompt & Automatic)">xterm -e nmon</Program>
+			<Program icon="system-run.png" label="Grub4dos Installer (Prompt & Automatic)">xterm -e nmon</Program>
+		</Menu>
+		<Menu icon="computer.png" label="Monitoring">
+			<Program icon="xterm-color_48x48.xpm" label="Nmon">xterm -e nmon</Program>
+			<Program icon="htop.png" label="Htop">xterm -e htop</Program>
+		</Menu>
+		<Menu icon="computer.png" label="System Information">
+			<Program icon="computer.png" label="CatSysINFO (Linux Information)">catsysinfo</Program>
+			<Program icon="computer.png" label="HardInfo">hardinfo</Program>
+		</Menu>
+		<Menu icon="zoom-in.png" label="Miscellaneous">
+			<Program icon="media-removable.png" label="Create Anmincat LiveUSB (Installed Anmincat USB required)">xterm -e nmon</Program>
+			<Program icon="media-removable.png" label="Create Ventoy USB (Network reqiured)">xterm -e nmon</Program>
+			<Program icon="media-removable.png" label="Universal Linux Installer (Network required)">xterm -e nmon</Program>
+		</Menu>
+		<Separator/>
+		<Program icon="help-about.png" label="About">catabout</Program>
+		<Restart icon="" label="Restart JWM" />
+		<Program icon="system-log-out.png" label="Exit">powermenu</Program>
 	</RootMenu>
 
 	<!-- Tray at the bottom. -->
@@ -62,11 +64,11 @@
 		<TrayButton icon="pan-up-symbolic.symbolic.png" label="Applications">root:1</TrayButton>
 		<Spacer width="5"/>
 		<!-- quick launch area. -->
-		<TrayButton icon="utilities-terminal-symbolic.symbolic.png" label="Term">exec:xterm</TrayButton>
+		<TrayButton icon="utilities-terminal.png" label="Term">exec:xterm</TrayButton>
 		<Spacer width="3"/>
-		<TrayButton icon="system-file-manager-symbolic.symbolic.png" label="File">exec:pcmanfm</TrayButton>
+		<TrayButton icon="system-file-manager.png" label="File">exec:pcmanfm</TrayButton>
 		<Spacer width="3"/>
-		<TrayButton icon="text-editor-symbolic.symbolic.png" label="Edit">exec:leafpad</TrayButton>
+		<TrayButton icon="accessories-text-editor.png" label="Edit">exec:leafpad</TrayButton>
 		<Spacer width="3"/>
 		<TrayButton icon="window-restore-symbolic.symbolic.png" popup="Show Desktop">showdesktop</TrayButton>
 		<Spacer width="10"/>
@@ -100,7 +102,7 @@
         </Active>
     </WindowStyle>
     <TrayStyle group="true" list="all">
-        <Background>#FFFFFF</Background>
+        <Background>#CECECE</Background>
         <Foreground>#3C3C3C</Foreground>
         <Outline>#CECECE</Outline>
         <Opacity>0.75</Opacity>
@@ -110,8 +112,8 @@
         <Foreground>#FFFFFF</Foreground>
         <Background>#808080</Background>
       </Active>
-      <Foreground>#000000</Foreground>
-      <Background>#FFFFFF</Background>
+      <Foreground>#3C3C3C</Foreground>
+      <Background>#CECECE</Background>
     </TaskListStyle>
     <PagerStyle>
         <Outline>#000000</Outline>
@@ -124,9 +126,8 @@
         </Active>
     </PagerStyle>
     <MenuStyle>
-        <Foreground>#000000</Foreground>
-        <Background>#FFFFFF</Background>
-        <Outline>#000000</Outline>
+        <Foreground>#3C3C3C</Foreground>
+        <Background>#CECECE</Background>
         <Active>
             <Foreground>#FFFFFF</Foreground>
             <Background>#808080</Background>
@@ -142,8 +143,11 @@
 	<IconPath>/usr/share/icons</IconPath>
 	<IconPath>/usr/share/pixmaps</IconPath>
 	<IconPath>/usr/local/share/jwm</IconPath>
+	<IconPath>/usr/share/icons/hicolor/24x24/apps</IconPath>
 	<IconPath>/usr/share/icons/Adwaita/24x24/ui</IconPath>
 	<IconPath>/usr/share/icons/Adwaita/24x24/apps</IconPath>
+	<IconPath>/usr/share/icons/Adwaita/24x24/legacy</IconPath>
+	<IconPath>/usr/share/icons/Adwaita/24x24/devices</IconPath>
 
 	<!-- Desktop Background. -->
 	<Desktops width="2" height="1">
