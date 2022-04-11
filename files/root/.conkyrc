@@ -50,8 +50,8 @@ ${color grey}RAM Usage:$color $mem%
    ${color grey}$membar
 ${color grey}Swap Usage:$color $swap/$swapmax - $swapperc% 
    ${color grey}${swapbar 4}
-${color grey}Networking:
-	Up:$color ${upspeed} ${color grey} - Down:$color ${downspeed}
+${color grey}LAN Networking:
+	Up:   $color  ${upspeed eth0} ${color grey} - Down:$color ${downspeed eth0}
 ${color green}$hr
 ${color grey}Filesystem:$color RootFS
    ${color grey}Size:$color $fs_size
