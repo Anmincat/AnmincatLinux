@@ -51,20 +51,20 @@ echo "[iso] Applying isohybrid..."
 isohybrid Anmincat_$VERSION_ID.iso
 
 echo "[iso] Calculating md5..."
-md5sum Anmincat_$VERSION_ID.iso > MD5SUM
-cat MD5SUM
+md5sum Anmincat_$VERSION_ID.iso > MD5SUM.txt
+cat MD5SUM.txt
 
 echo "[iso] Calculating sha1sum..."
-sha1sum Anmincat_$VERSION_ID.iso > SHA1SUM
-cat SHA1SUM
+sha1sum Anmincat_$VERSION_ID.iso > SHA1SUM.txt
+cat SHA1SUM.txt
 
 echo "[iso] Calculating sha256..."
-sha256sum Anmincat_$VERSION_ID.iso > SHA256SUM
-cat SHA256SUM
+sha256sum Anmincat_$VERSION_ID.iso > SHA256SUM.txt
+cat SHA256SUM.txt
 
 chown 1000:1000 Anmincat_$VERSION_ID.iso
-chown 1000:1000 MD5SUM
-chown 1000:1000 SHA1SUM
-chown 1000:1000 SHA256SUM
+chown 1000:1000 MD5SUM.txt
+chown 1000:1000 SHA1SUM.txt
+chown 1000:1000 SHA256SUM.txt
 
 echo "[iso] Finished!"
