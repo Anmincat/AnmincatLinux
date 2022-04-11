@@ -10,7 +10,7 @@ WIDTH=0
 while true; do
   exec 3>&1
   selection=$(dialog \
-    --backtitle "Anmincat Linux - keyboard layout setup" \
+    --backtitle "Anmincat Linux - Keyboard layout setup" \
     --clear \
     --menu "Select your keyboard layout. (Default is English US)" $HEIGHT $WIDTH 4 \
     "DE" "Deutsch (qwertz)" \
@@ -31,6 +31,9 @@ while true; do
 	else
 		echo "Fallback to default."
 	fi
+	. /etc/KBLAYOUT
+	loadkmap < /usr/share/kmap/$kmap
+	clear
 	exit
 	;;
 	$DIALOG_ESC)
@@ -42,28 +45,46 @@ while true; do
 	else
 		echo "Fallback to default."
 	fi
+	. /etc/KBLAYOUT
+	loadkmap < /usr/share/kmap/$kmap
+	clear
 	exit
 	;;
   esac
   case $selection in
     DE )
 	printf "kmap=qwertz/de-latin1.kmap\nxkbmap=de" > /etc/KBLAYOUT
+	. /etc/KBLAYOUT
+	loadkmap < /usr/share/kmap/$kmap
+	clear
 	exit
       ;;
     EN_UK )
-	printf "kmap=qwerty/en.kmap\nxkbmap=gb" > /etc/KBLAYOUT
+	printf "kmap=qwerty/uk.kmap\nxkbmap=gb" > /etc/KBLAYOUT
+	. /etc/KBLAYOUT
+	loadkmap < /usr/share/kmap/$kmap
+	clear
 	exit
       ;;
     EN_US )
 	printf "kmap=qwerty/us.kmap\nxkbmap=us" > /etc/KBLAYOUT
+	. /etc/KBLAYOUT
+	loadkmap < /usr/share/kmap/$kmap
+	clear
 	exit
       ;;
     EN_US_DVORAK )
 	printf "kmap=dvorak/dvorak.kmap\nxkbmap=dvorak" > /etc/KBLAYOUT
+	. /etc/KBLAYOUT
+	loadkmap < /usr/share/kmap/$kmap
+	clear
 	exit
       ;;
     FR_LATIN )
 	printf "kmap=azerty/fr.kmap\nxkbmap=fr" > /etc/KBLAYOUT
+	. /etc/KBLAYOUT
+	loadkmap < /usr/share/kmap/$kmap
+	clear
 	exit
       ;;
   esac
