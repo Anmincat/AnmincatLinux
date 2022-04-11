@@ -62,6 +62,9 @@ echo "[iso] Calculating sha256..."
 sha256sum Anmincat_$VERSION_ID.iso > SHA256SUM.txt
 cat SHA256SUM.txt
 
+echo "[iso] Copying files/root/INSTALLED_PACKAGES to PACKAGES.txt..."
+cp -rv files/root/INSTALLED_PACKAGES PACKAGES.txt
+chown 1000:1000 PACKAGES.txt
 chown 1000:1000 Anmincat_$VERSION_ID.iso
 chown 1000:1000 MD5SUM.txt
 chown 1000:1000 SHA1SUM.txt
