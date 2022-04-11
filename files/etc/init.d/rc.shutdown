@@ -6,7 +6,7 @@ clear
 
 echo "Stopping services..."
 
-for i in /etc/rc.d/stop/*
+for i in /etc/init.d/stop/*
 do
 	if [ -x $i ]; then
 		$i stop
