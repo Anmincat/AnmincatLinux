@@ -21,6 +21,7 @@ mkdir -v system/mnt
 mkdir -v system/opt
 mkdir -v system/run
 mkdir -pv system/var/log
+mkdir -v system/var/run
 mkdir -pv system/usr/local
 mkdir -v system/usr/local/bin
 mkdir -v system/usr/local/sbin
@@ -37,7 +38,7 @@ case $(uname -m) in
 esac
 
 install -dv -m 0750 system/root
-mkdir system/root/.local
+mkdir -pv system/root/.local/share
 
 echo "[filesystem] Creating device nodes..."	
 mknod -m 600 system/dev/console c 5 1
