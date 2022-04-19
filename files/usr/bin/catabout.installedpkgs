@@ -6,7 +6,7 @@ export MAIN_DIALOG='
 <window title="Installed packages">
 <vbox>
 	<edit>
-		<input file>/root/INSTALLED_PACKAGES</input>
+		<input file>/root/PACKAGES</input>
 		<width>550</width>
 		<height>350</height>
 	</edit>
