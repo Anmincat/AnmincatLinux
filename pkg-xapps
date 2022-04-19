@@ -9,10 +9,10 @@ libavahi-common-data libthai-data libxcomposite1 libstartup-notification0 liblda
 libsasl2-2 libsasl2-modules-db libfm-gtk4 libfm4 libfm-data libmenu-cache3 libmenu-cache-bin libfm-extra4 
 libfm-gtk-data libexif12 libexiv2-27 libdbus-glib-1-2 libparted-fs-resize0 libgtkmm-2.4-1v5 libpangomm-1.4-1v5 
 libcairomm-1.0-1v5 libatkmm-1.6-1v5 libglibmm-2.4-1v5 libsigc++-2.0-0v5 libpangoft2-1.0-0 
-libopenjp2-7 libwebpmux3 "
+libopenjp2-7 libwebpmux3 libfltk1.3 libcurl4 "
 
-PACKAGES="viewnior pcmanfm jwm conky-std xterm fonts-dejavu-core greybird-gtk-theme gtk2-engines-murrine 
-shared-mime-info hardinfo xdg-utils gtk2-engines-pixbuf adwaita-icon-theme "
+PACKAGES="feh viewnior pcmanfm jwm conky-std xterm fonts-dejavu-core greybird-gtk-theme gtk2-engines-murrine 
+shared-mime-info hardinfo xdg-utils gtk2-engines-pixbuf adwaita-icon-theme dillo "
 
 rm packages/xapps/*.deb
 cd packages/xapps
