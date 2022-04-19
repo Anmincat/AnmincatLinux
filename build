@@ -107,15 +107,15 @@ build() {
 	done
 }
 
-buildrootfs() {
-	# run buildscripts
+buildnokernel() {
+	# run buildscripts except kernel buildscript
 	buildscripts/00*
 	buildscripts/01*
 	buildscripts/02*
 	buildscripts/03*
 	buildscripts/04*
 	buildscripts/05*
-	buildscripts/08*
+	buildscripts/06*
 	buildscripts/09*
 }
 
@@ -148,21 +148,21 @@ kernelconf() {
 }
 
 help() {
-	echo "Usage: ./build <all,build,build_[rootfs,kernel],check,update_[package,kernel,busybox],clean,help"
-	echo "		config_[busybox,kernel]>"
+	echo "Usage: ./build <all,build,build_[rootfs,kernel],check,update_[package,kernel,busybox],clean,help,config_[busybox,kernel]>"
 	echo "Example: ./build all"
-	echo "Example: ./build build_rootfs (build only rootfs)"
+	echo "Example: ./build build_nokernel"
+	echo "(You may wanna use this after kernel image and modules is already existed)"
 	echo
-	echo 'check		Check requirements.'
-	echo 'all 		Build all.'
-	echo 'clean		Clean everything.'
-	echo 'build_rootfs 	Build rootfs only (require kernel modules).'
-	echo 'build_kernel 	Build kernel and modules.'
-	echo 'update_package	Download/Update packages.'
-	echo 'update_kernel	Download/Update Linux kernel.'
-	echo 'update_busybox	Download/Update Busybox.'
-	echo 'config_busybox	Launch Busybox configuration.'
-	echo 'config_kernel	Launch Linux Kernel configuration.'
+	echo ' check		Check requirements.'
+	echo ' all 		Build all.'
+	echo ' nokernel	Build without kernel compilation'
+	echo ' clean		Clean everything.'
+	echo ' build_kernel 	Build kernel and modules.'
+	echo ' update_package	Download/Update packages.'
+	echo ' update_kernel	Download/Update Linux kernel.'
+	echo ' update_busybox	Download/Update Busybox.'
+	echo ' config_busybox	Launch Busybox configuration.'
+	echo ' config_kernel	Launch Linux Kernel configuration.'
 	echo
 	echo 'Made by Supphakit Duanghoy (c) 2022, for building Anmincat Linux.'
 }
@@ -183,8 +183,8 @@ case "$1" in
 	update_busybox)
 		getbusybox
 		;;
-	build_rootfs)
-		buildrootfs
+	nokernel)
+		buildnokernel
 		;;
 	build_kernel)
 		buildkernel
