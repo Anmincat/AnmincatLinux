@@ -3,54 +3,44 @@
 	<!-- Menu. -->
 	<RootMenu onroot="1" height="22">
 		<Menu icon="system-file-manager.png" label="File Managers">
-			<Program icon="mc.xpm" label="MidnightCommander">xterm -e mc</Program>
-			<Program icon="system-file-manager.png" label="PCManFM">pcmanfm</Program>
-			<Program icon="xarchiver.xpm" label="Xarchiver">xarchiver</Program>
+			<Program icon="mc.xpm" label="MidnightCommander (Dual-Pane File Manager)">xterm -e mc</Program>
+			<Program icon="system-file-manager.png" label="PCManFM (GTK+2 File Manager)">pcmanfm</Program>
+			<Program icon="xarchiver.xpm" label="Xarchiver (GTK+2 Archive Extract/Viewer)">xarchiver</Program>
 		</Menu>
 		<Menu icon="utilities-terminal.png" label="Terminals">
 			<Program icon="xterm-color_48x48.xpm" label="Xterm (ash)">xterm -e ash</Program>
 			<Program icon="xterm-color_48x48.xpm" label="Xterm (bash)">xterm -e bash</Program>
 		</Menu>
 		<Menu icon="accessories-text-editor.png" label="Editors">
-			<Program icon="leafpad.xpm" label="Leafpad">leafpad</Program>
-			<Program icon="mcedit.xpm" label="MCedit">xterm -e mcedit</Program>
-			<Program icon="xterm-color_48x48.xpm" label="Nano">xterm -e nano</Program>
-			<Program icon="xterm-color_48x48.xpm" label="Vi (Vim busybox)">xterm -e vi</Program>
+			<Program icon="leafpad.xpm" label="Leafpad (GTK+2 Text Editor)">leafpad</Program>
+			<Program icon="mcedit.xpm" label="MCedit (MidnightCommander's Text Editor)">xterm -e mcedit</Program>
+			<Program icon="utilities-terminal.png" label="Nano (Console-based Text Editor)">xterm -e nano</Program>
+			<Program icon="utilities-terminal.png" label="Vi (Vim busybox Text Editor)">xterm -e vi</Program>
 		</Menu>
 		<Menu icon="applets-screenshooter.png" label="Viewer">
-			<Program icon="viewnior.xpm" label="Viewnior">viewnior</Program>
+			<Program icon="viewnior.xpm" label="Viewnior (GTK+2 Image Viewer)">viewnior</Program>
 		</Menu>
 		<Menu icon="network-idle.png" label="Networking">
-			<Program icon="network-wired.png" label="Setup Ethernet Network (LAN)">xterm -geometry 80x10+10+2 -e setup-ethernet</Program>
-			<Program icon="network-wireless.png" label="Setup Wireless Network (WiFi)">viewnior</Program>
+			<Program icon="network-wired.png" label="Setup Ethernet Network (DHCP|LAN)">xterm -geometry 80x10+10+2 -e setup-ethernet</Program>
+			<Program icon="dillo.xpm" label="Dillo (FLTK-based Tiny Web Browser)">xterm -e dillo</Program>
 		</Menu>
 		<Separator/>
 		<Menu icon="drive-harddisk.png" label="Harddisk / Partitions / Filesystems">
-			<Program icon="gparted.png" label="GParted">gparted</Program>
-			<Program icon="xterm-color_48x48.xpm" label="Cfdisk">xterm -e cfdisk</Program>
-			<Program icon="xterm-color_48x48.xpm" label="Parted">xterm -e parted</Program>
+			<Program icon="gparted.png" label="GParted (GTK+2 Partition Editor)">gparted</Program>
+			<Program icon="xterm-color_48x48.xpm" label="Cfdisk (Ncurses-based Partition Editor)">xterm -e cfdisk</Program>
+			<Program icon="xterm-color_48x48.xpm" label="Parted (Console-based Partition Editor)">xterm -e parted</Program>
 		</Menu>
 		<Menu icon="system-search.png" label="Recovery">
-			<Program icon="xterm-color_48x48.xpm" label="Photorec">xterm -e photorec</Program>
-			<Program icon="xterm-color_48x48.xpm" label="Testdisk">xterm -e testdisk</Program>
-		</Menu>
-		<Menu icon="system-run.png" label="Bootloaders">
-			<Program icon="system-run.png" label="SYSLINUX Installer (Prompt & Automatic)">xterm -e nmon</Program>
-			<Program icon="system-run.png" label="EXTLINUX Installer (Prompt & Automatic)">xterm -e nmon</Program>
-			<Program icon="system-run.png" label="Grub4dos Installer (Prompt & Automatic)">xterm -e nmon</Program>
+			<Program icon="utilities-terminal.png" label="Photorec (File Data Recovery)">xterm -e photorec</Program>
+			<Program icon="utilities-terminal.png" label="Testdisk (Partition/File Data Recovery)">xterm -e testdisk</Program>
 		</Menu>
 		<Menu icon="computer.png" label="Monitoring">
-			<Program icon="xterm-color_48x48.xpm" label="Nmon">xterm -e nmon</Program>
-			<Program icon="htop.png" label="Htop">xterm -e htop</Program>
+			<Program icon="utilities-terminal.png" label="Nmon (Nigel's Performance Monitor)">xterm -e nmon</Program>
+			<Program icon="htop.png" label="Htop (Console-based Interactive Process Viewer)">xterm -e htop</Program>
 		</Menu>
 		<Menu icon="computer.png" label="System Information">
-			<Program icon="computer.png" label="CatSysINFO (Linux Information)">catsysinfo</Program>
-			<Program icon="computer.png" label="HardInfo">hardinfo</Program>
-		</Menu>
-		<Menu icon="zoom-in.png" label="Miscellaneous">
-			<Program icon="media-removable.png" label="Create Anmincat LiveUSB (Installed Anmincat USB required)">xterm -e nmon</Program>
-			<Program icon="media-removable.png" label="Create Ventoy USB (Network reqiured)">xterm -e nmon</Program>
-			<Program icon="media-removable.png" label="Universal Linux Installer (Network required)">xterm -e nmon</Program>
+			<Program icon="computer.png" label="CatSysINFO (Advanced Linux Information)">catsysinfo</Program>
+			<Program icon="computer.png" label="HardInfo (GTK+2 Hardware Information)">hardinfo</Program>
 		</Menu>
 		<Separator/>
 		<Program icon="help-about.png" label="About">catabout</Program>
@@ -64,11 +54,11 @@
 		<TrayButton icon="pan-up-symbolic.symbolic.png" label="Applications">root:1</TrayButton>
 		<Spacer width="5"/>
 		<!-- quick launch area. -->
-		<TrayButton icon="utilities-terminal.png" label="Term">exec:xterm</TrayButton>
+		<TrayButton icon="utilities-terminal.png">exec:xterm</TrayButton>
 		<Spacer width="3"/>
-		<TrayButton icon="system-file-manager.png" label="File">exec:pcmanfm</TrayButton>
+		<TrayButton icon="system-file-manager.png">exec:pcmanfm</TrayButton>
 		<Spacer width="3"/>
-		<TrayButton icon="accessories-text-editor.png" label="Edit">exec:leafpad</TrayButton>
+		<TrayButton icon="accessories-text-editor.png">exec:leafpad</TrayButton>
 		<Spacer width="3"/>
 		<TrayButton icon="window-restore-symbolic.symbolic.png" popup="Show Desktop">showdesktop</TrayButton>
 		<Spacer width="10"/>
@@ -151,7 +141,7 @@
 
 	<!-- Desktop Background. -->
 	<Desktops width="2" height="1">
-		<Background type="image">/usr/share/wallpapers/default.jpg</Background>
+		<Background type="command">feh --bg-fill /usr/share/wallpapers/default.jpg</Background>
 	</Desktops>
 
 	<!-- Double click speed (in milliseconds) -->
