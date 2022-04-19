@@ -14,12 +14,13 @@ else
 	printf "no\n"
 fi
 
-# pack base system into initrd
-echo "[iso] Packing base system..."
-cd system
-find . | cpio -o -H newc | xz --format=lzma > ../rootfs.gz
-cd ..
-chown 1000:1000 rootfs.gz
+printf "[iso] Checking if old distrb directory is available..."
+if [ -d ${PWD}/distrb ]; then
+	printf "yes, deleting...\n"
+	rm -rf distrb
+else
+	printf "no\n"
+fi
 
 if [ ! -d "cdroot" ]; then
 	echo "[iso] Creating cdroot directory..."
@@ -31,6 +32,11 @@ echo "[iso] Copying boot media contents into cdroot directory..."
 cp -rv syslinux/$(uname -m)-BIOS/* cdroot/isolinux
 cp -v rootfs.gz cdroot/boot
 cp -v vmlinuz cdroot/boot
+
+if [ ! -d "distrb" ]; then
+	echo "[iso] Creating distrb directory..."
+	mkdir -v distrb
+fi
 
 echo "[iso] Creating ISO9660 bootable image..."
 xorriso \
@@ -44,30 +50,30 @@ xorriso \
     -boot-load-size 4 \
     -boot-info-table \
     --eltorito-catalog isolinux/isolinux.cat \
-    -output "${PWD}/Anmincat_$VERSION_ID.iso" \
+    -output "${PWD}/distrb/Anmincat_$VERSION_ID.iso" \
         "${PWD}/cdroot"
 
 echo "[iso] Applying isohybrid..."
-isohybrid Anmincat_$VERSION_ID.iso
+isohybrid distrb/Anmincat_$VERSION_ID.iso
 
 echo "[iso] Calculating md5..."
-md5sum Anmincat_$VERSION_ID.iso > MD5SUM.txt
-cat MD5SUM.txt
+md5sum distrb/Anmincat_$VERSION_ID.iso > distrb/MD5SUM.txt
+cat distrb/MD5SUM.txt
 
 echo "[iso] Calculating sha1sum..."
-sha1sum Anmincat_$VERSION_ID.iso > SHA1SUM.txt
-cat SHA1SUM.txt
+sha1sum distrb/Anmincat_$VERSION_ID.iso > distrb/SHA1SUM.txt
+cat distrb/SHA1SUM.txt
 
 echo "[iso] Calculating sha256..."
-sha256sum Anmincat_$VERSION_ID.iso > SHA256SUM.txt
-cat SHA256SUM.txt
+sha256sum distrb/Anmincat_$VERSION_ID.iso > distrb/SHA256SUM.txt
+cat distrb/SHA256SUM.txt
 
 echo "[iso] Copying files/root/INSTALLED_PACKAGES to PACKAGES.txt..."
-cp -rv files/root/INSTALLED_PACKAGES PACKAGES.txt
-chown 1000:1000 PACKAGES.txt
-chown 1000:1000 Anmincat_$VERSION_ID.iso
-chown 1000:1000 MD5SUM.txt
-chown 1000:1000 SHA1SUM.txt
-chown 1000:1000 SHA256SUM.txt
+cp -rv files/root/PACKAGES distrb/PACKAGES.txt
+chown 1000:1000 distrb/PACKAGES.txt
+chown 1000:1000 distrb/Anmincat_$VERSION_ID.iso
+chown 1000:1000 distrb/MD5SUM.txt
+chown 1000:1000 distrb/SHA1SUM.txt
+chown 1000:1000 distrb/SHA256SUM.txt
 
 echo "[iso] Finished!"
