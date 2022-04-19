@@ -1,4 +1,4 @@
 #!/bin/sh
 
-rm files/root/INSTALLED_PACKAGES
-printf "$(ls packages/base)\n$(ls packages/tools)\n$(ls packages/xorg)\n$(ls packages/xapps)" > files/root/INSTALLED_PACKAGES
+rm files/root/PACKAGES
+printf "$(ls packages/base)\n$(ls packages/tools)\n$(ls packages/xorg)\n$(ls packages/xapps)" > files/root/PACKAGES
