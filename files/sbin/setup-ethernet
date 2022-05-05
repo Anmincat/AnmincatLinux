@@ -8,6 +8,7 @@ if [ "$(ip addr | grep eth0)" = ""  ]; then
 	echo "Maybe your network driver/controller not included or unloaded?"
 	echo "Press any keys to quit..."
 	read
+	exit 1
 else
 	echo "Found."
 fi
