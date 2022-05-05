@@ -7,7 +7,7 @@ Anmincat Linux is mini 87MB On-RAM Live Linux Distribution based on Debian, Devu
 		<li>Boot from CD/DVD/USB Flash drive, and run fully on RAM</li>
 		<li>87MB ISO size, 284MB RootFS size (Compressed with LZMA)</li>
 		<li>Amd64 (64 Bit) available</li>
-		<li>X Window System with JWM (Joe's Window Manager) + VESA Driver</li>
+		<li>X Window System with JWM (Joe's Window Manager) + VESA Graphic Driver</li>
 		<li>Comes with GParted, NTFS Support (ntfs-3g), Photorec, Testdisk and more!</li>
 		<li>No APT any package manager (due to heavily modified and need to save spaces)</li>
 		<li>Best for someone with very slow download speed</li>
