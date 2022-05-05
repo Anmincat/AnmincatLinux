@@ -1,4 +1,4 @@
-# AnmincatLinux
+![img](https://raw.githubusercontent.com/Anmincat/anmincat.github.io/main/logo.png) <br>
 Website: [https://anmincat.github.io/](https://anmincat.github.io/) <br>
 Download Pre-built ISO: [https://github.com/Anmincat/AnmincatLinux/releases/latest](https://github.com/Anmincat/AnmincatLinux/releases/latest)
 # Introduction
