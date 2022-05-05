@@ -114,13 +114,13 @@ buildnokernel() {
 	buildscripts/02*
 	buildscripts/03*
 	buildscripts/04*
-	buildscripts/05*
 	buildscripts/06*
-	buildscripts/09*
+	buildscripts/07*
+	buildscripts/08*
 }
 
 buildkernel() {
-	buildscripts/07*
+	buildscripts/05*
 }
 
 busyboxconf() {
