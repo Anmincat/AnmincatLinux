@@ -15,6 +15,7 @@ Anmincat Linux is mini 87MB On-RAM Live Linux Distribution based on Debian, Devu
 # Building
 Building Anmincat Linux required [Devuan](https://www.devuan.org) (Debian fork distribution wihtout systemd) <br>
 Running ``sudo ./build`` or ``sudo ./build help`` for help. <br>
+Running ``sudo ./build check`` to check package/tools requirements for building.
 Running ``sudo ./build all`` to start building Anmincat Linux.
 # Goal
 Anmincat's goal is to be smallest portable rescue system with included partiton editor, useful utility programs and GUI user interface under 100MB. 
