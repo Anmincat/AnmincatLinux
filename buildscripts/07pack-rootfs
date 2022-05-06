@@ -66,6 +66,27 @@ rm -rf system/usr/share/themes/Greybird/unity
 rm -rf system/usr/share/themes/Greybird/xfce-notify-4.0
 rm -rf system/usr/share/themes/Greybird/xfwm4
 rm -rf system/usr/share/themes/Greybird/Greybird.emerald
+rm -rf system/lib/firmware/3com
+rm -rf system/lib/firmware/advansys
+rm -rf system/lib/firmware/brcm
+rm -rf system/lib/firmware/cxgb3
+rm -rf system/lib/firmware/cxgb4
+rm -rf system/lib/firmware/dabusb
+rm -rf system/lib/firmware/e100
+rm -rf system/lib/firmware/ene-ub6250
+rm -rf system/lib/firmware/go7007
+rm -rf system/lib/firmware/kaweth
+rm -rf system/lib/firmware/matrox
+rm -rf system/lib/firmware/mediatek
+rm -rf system/lib/firmware/moxa
+rm -rf system/lib/firmware/rockchip
+rm -rf system/lib/firmware/silabs
+rm -rf system/lib/firmware/tehuti
+rm -rf system/lib/firmware/tigon
+rm -rf system/lib/firmware/ueagle-atm
+rm -rf system/lib/firmware/*.bin
+rm -rf system/lib/firmware/*.hex
+rm -rf system/lib/firmware/*.fw
 
 echo "[clean-system] Removing unneeded gconv"
 mv -v system/usr/lib/x86_64-linux-gnu/gconv/ANSI_X3.110.so system/usr/lib/x86_64-linux-gnu/gconv/ANSI_X3.110.so.k
