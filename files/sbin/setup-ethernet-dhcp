@@ -1,5 +1,5 @@
 #!/bin/sh
-#	ethernet-setup is a shell script, automatic ethernet setup.
+#	ethernet-setup-dhcp is a shell script, DHCP automatic ethernet setup.
 #	Made by Supphakit Duanghoy (c) 2022
 
 echo "Checking eth0..."
@@ -17,16 +17,7 @@ echo "Creating network.conf..."
 printf "NETWORKING=yes\nINTERFACE=eth0\nDHCP=yes" > /etc/network.conf
 
 echo "Creating /etc/network.d/interface.eth0..."
-mkdir /etc/network.d
 touch /etc/network.d/interface.eth0
-
-echo "Creating /etc/network/if-*.d folders..."
-mkdir -p /etc/network/if-post-up.d
-mkdir /etc/network/if-post-down.d
-mkdir /etc/network/if-up.d
-mkdir /etc/network/if-down.d
-mkdir /etc/network/if-pre-up.d
-mkdir /etc/network/if-pre-down.d
 
 echo "Creating /etc/network/interfaces..."
 printf "auto lo\niface lo inet loopback\n\nauto eth0\niface eth0 inet dhcp\nudhcpc_opts -b" > /etc/network/interfaces

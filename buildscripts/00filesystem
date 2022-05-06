@@ -33,6 +33,17 @@ mkdir -v system/usr/lib
 mkdir -v system/usr/bin
 mkdir -v system/usr/sbin
 
+echo "[filesystem] Creating /etc/network.d..."
+mkdir system/etc/network.d
+
+echo "[filesystem] Creating /etc/network/if-*.d folders..."
+mkdir -p system/etc/network/if-post-up.d
+mkdir system/etc/network/if-post-down.d
+mkdir system/etc/network/if-up.d
+mkdir system/etc/network/if-down.d
+mkdir system/etc/network/if-pre-up.d
+mkdir system/etc/network/if-pre-down.d
+
 case $(uname -m) in
 	x86_64) mkdir -v system/lib64 ;;
 esac
