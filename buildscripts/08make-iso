@@ -82,10 +82,6 @@ cat distrb/SHA256SUM.txt
 
 echo "[iso] Copying files/root/INSTALLED_PACKAGES to PACKAGES.txt..."
 cp -rv files/root/PACKAGES distrb/PACKAGES.txt
-chown 1000:1000 distrb/PACKAGES.txt
-chown 1000:1000 distrb/Anmincat_$VERSION_ID.iso
-chown 1000:1000 distrb/MD5SUM.txt
-chown 1000:1000 distrb/SHA1SUM.txt
-chown 1000:1000 distrb/SHA256SUM.txt
+chown 1000:1000 -R distrb/
 
 echo "[iso] Finished!"
