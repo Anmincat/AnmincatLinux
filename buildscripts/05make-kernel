@@ -10,12 +10,18 @@ for i in kernel/linux*; do
 	fi
 done
 
+echo "[kernel] Copying patched fbdev sources..."
+cp -rv ../cfbimgblt.c drivers/video/fbdev/core
+cp -rv ../sysimgblt.c drivers/video/fbdev/core
+cp -rv ../sysfillrect.c drivers/video/fbdev/core
+
 echo "[kernel] Begin building linux kernel..."
 make clean
 make mrproper
 cp ../kernelconfig_$(uname -m) .config
 make bzImage -j$(nproc)
 cp -v arch/x86/boot/bzImage ../../vmlinuz
+chown 1000:1000 ../../vmlinuz
 make modules -j$(nproc)
 
 echo "[kernel] Finished!"
