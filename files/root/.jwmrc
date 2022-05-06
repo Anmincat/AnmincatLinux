@@ -21,7 +21,7 @@
 			<Program icon="viewnior.xpm" label="Viewnior (GTK+2 Image Viewer)">viewnior</Program>
 		</Menu>
 		<Menu icon="network-idle.png" label="Networking">
-			<Program icon="network-wired.png" label="Setup Ethernet Network (DHCP|LAN)">xterm -geometry 80x10+10+2 -e setup-ethernet</Program>
+			<Program icon="network-wired.png" label="Setup Ethernet Network (DHCP|LAN)">xterm -geometry 80x10+10+2 -e setup-ethernet-dhcp</Program>
 			<Program icon="dillo.xpm" label="Dillo (FLTK-based Tiny Web Browser)">xterm -e dillo</Program>
 		</Menu>
 		<Separator/>
