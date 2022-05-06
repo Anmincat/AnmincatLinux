@@ -19,7 +19,7 @@ Running ``sudo ./build check`` to check package/tools requirements for building.
 Running ``sudo ./build all`` to start building Anmincat Linux.
 # Goal
 Anmincat's goal is to be smallest portable rescue system with included partiton editor, useful utility programs and GUI user interface under 100MB. 
-Support Legacy BIOS, old computer from 2007 - 2010.
+Support Legacy BIOS and UEFI, old computer from 2007 - 2010.
 # Legal
 Copyright (c) 2022 Supphakit Duanghoy. All rights reserved. <br>
 Buildscripts and custom codes is covered by GNU General Public License, version 2. <br>
