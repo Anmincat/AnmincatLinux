@@ -24,12 +24,15 @@ fi
 
 if [ ! -d "cdroot" ]; then
 	echo "[iso] Creating cdroot directory..."
-	mkdir -pv cdroot/boot
+	mkdir -pv cdroot/EFI/boot/
+	mkdir -pv cdroot/boot/grub
 	mkdir -v cdroot/isolinux
 fi
 
 echo "[iso] Copying boot media contents into cdroot directory..."
-cp -rv syslinux/$(uname -m)-BIOS/* cdroot/isolinux
+cp -rv bootloader/BIOS/* cdroot/isolinux
+cp -v bootloader/UEFI/grub.cfg cdroot/boot/grub
+cp -v bootloader/UEFI/bootx64.efi cdroot/EFI/boot
 cp -v rootfs.gz cdroot/boot
 cp -v vmlinuz cdroot/boot
 
@@ -38,23 +41,32 @@ if [ ! -d "distrb" ]; then
 	mkdir -v distrb
 fi
 
+echo "[iso] Creating EFI image..."
+dd if=/dev/zero of=cdroot/boot/grub/efi.img bs=1M count=1
+mkfs.vfat cdroot/boot/grub/efi.img
+mmd -i cdroot/boot/grub/efi.img efi efi/boot
+mcopy -vi cdroot/boot/grub/efi.img bootloader/UEFI/bootx64.efi ::efi/boot/
+
 echo "[iso] Creating ISO9660 bootable image..."
 xorriso \
-	-as mkisofs \
+    -as mkisofs \
     -iso-level 3 \
+    -o "distrb/Anmincat_$VERSION_ID.iso" \
     -full-iso9660-filenames \
     -volid "ANMINCAT" \
+    -isohybrid-mbr /usr/lib/ISOLINUX/isohdpfx.bin \
     -eltorito-boot \
-    isolinux/isolinux.bin \
-    -no-emul-boot \
-    -boot-load-size 4 \
-    -boot-info-table \
-    --eltorito-catalog isolinux/isolinux.cat \
-    -output "${PWD}/distrb/Anmincat_$VERSION_ID.iso" \
-        "${PWD}/cdroot"
-
-echo "[iso] Applying isohybrid..."
-isohybrid distrb/Anmincat_$VERSION_ID.iso
+        isolinux/isolinux.bin \
+        -no-emul-boot \
+        -boot-load-size 4 \
+        -boot-info-table \
+        --eltorito-catalog isolinux/isolinux.cat \
+    -eltorito-alt-boot \
+        -e /boot/grub/efi.img \
+        -no-emul-boot \
+        -isohybrid-gpt-basdat \
+    -append_partition 2 0xef cdroot/boot/grub/efi.img \
+    "cdroot"
 
 echo "[iso] Calculating md5..."
 md5sum distrb/Anmincat_$VERSION_ID.iso > distrb/MD5SUM.txt
