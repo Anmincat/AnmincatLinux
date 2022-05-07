@@ -1,0 +1,100 @@
+#!/bin/sh
+#	Catntpw is a GTKdialog/Console based script. A easy, stupid front-end to chntpw
+#	Made by Supphakit Duanghoy (c) 2022
+
+# Clean old stuffs
+if [ -f /tmp/catntpw.users ]; then
+	rm /tmp/catntpw*
+fi
+
+# Check if user is running this on Xorg
+printf "Checking if user is running on Xorg..."
+if [ "$(pgrep Xorg)" = "" ]; then
+	GUI_MODE=0
+	printf "no\n"
+else
+	GUI_MODE=1
+	printf "yes\n"
+fi
+
+# Check for valid Windows NTFS drives
+printf "Checking for valid Windows NTFS drives...\n"
+for device in /dev/sd*
+do
+	if [ "$(blkid $device | grep ntfs)" = ""  ]; then
+		:
+	else
+		NAME_DEVICE=${device#/dev/}
+		
+		if [ ! -d /mnt/$NAME_DEVICE ]; then
+			mkdir /mnt/$NAME_DEVICE
+		fi
+		ntfs-3g $device /mnt/$NAME_DEVICE
+		
+		if [ -f /mnt/$NAME_DEVICE/Windows/System32/config/SAM ]; then
+			echo "Found valid Windows Installation at $device!"
+			export WIN_DRIVE=$NAME_DEVICE
+			export WIN_DRIVE_SAM=/mnt/$WIN_DRIVE/Windows/System32/config/SAM
+			break;
+		else
+			umount /mnt/$NAME_DEVICE
+		fi
+	fi
+done
+
+# Look for users
+printf "Looking for users in $WIN_DRIVE...\n"
+ls /mnt/$WIN_DRIVE/Users > /tmp/catntpw.users
+sed '/^Public$/d' /tmp/catntpw.users > /tmp/catntpw.users.out1
+sed '/^All Users$/d' /tmp/catntpw.users.out1 > /tmp/catntpw.users.out2
+sed '/^Default$/d' /tmp/catntpw.users.out2 > /tmp/catntpw.users.out3
+sed '/^Default User$/d' /tmp/catntpw.users.out3 > /tmp/catntpw.users.out4
+sed '/^desktop.ini$/d' /tmp/catntpw.users.out4 > /tmp/catntpw.users.out5
+cat /tmp/catntpw.users.out5
+
+export MAIN_DIALOG='
+<vbox>
+  <frame Select users you want to clear a password>
+    <tree rules_hint="true" exported_column="0">
+      <height>200</height><width>400</width>
+      <label>Detected users</label>
+      <input file>/tmp/catntpw.users.out5</input>
+      <variable>CHOOSE</variable>
+    </tree>
+  </frame>
+  <hbox>
+		<button ok></button>
+    	<button cancel></button>
+  </hbox>
+</vbox>
+'
+
+gtkdialog --program=MAIN_DIALOG > /tmp/catntpw.status
+
+. /tmp/catntpw.status
+
+if [ "$EXIT" = "Cancel" ]; then
+	exit 0
+else
+	if [ "$CHOOSE" = "" ]; then
+		export WARN_DIALOG='
+		 <vbox>
+		  <text>
+		    <label>Please select a user.</label>
+		  </text>
+		  <hbox>
+		   <button ok></button>
+		  </hbox>
+		 </vbox>
+		'
+
+		gtkdialog --program=WARN_DIALOG
+	else
+		chntpw -u $CHOOSE $WIN_DRIVE_SAM
+	fi
+fi
+
+# When finished
+umount /mnt/$WIN_DRIVE
+rmdir /mnt/$WIN_DRIVE
+rm /tmp/catntpw*

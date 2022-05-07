@@ -39,6 +39,7 @@ cp -rv files/usr/bin/catabout system/usr/bin/
 cp -rv files/usr/bin/catabout.* system/usr/bin/
 cp -rv files/usr/bin/catmount system/usr/bin/
 cp -rv files/usr/bin/catmount.* system/usr/bin/
+cp -rv files/usr/bin/catntpw system/usr/bin/
 cp -rv files/sbin/setup-* system/sbin/
 
 echo "[base] Applying services..."
