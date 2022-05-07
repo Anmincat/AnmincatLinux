@@ -10,8 +10,8 @@ libxdamage1 libxdmcp6 libxext6 libxfixes3 libxfont2 libxft2 libxi6 libxinerama1 
 libxpm4 libxrandr2 libxrender1 libxshmfence1 libxss1 libxt6 libxtst6 libxvmc1 libxxf86vm1 libz3-4 libzstd1 "
 
 PACKAGES="x11-common x11-xkb-utils xbitmaps xfonts-100dpi xfonts-75dpi xfonts-encodings xfonts-utils xinit 
-xkb-data xserver-common xserver-xorg-core xserver-xorg-input-evdev xserver-xorg-video-vesa xserver-xorg-video-fbdev 
-fontconfig fontconfig-config keyboard-configuration x11-xserver-utils "
+xkb-data xserver-common xserver-xorg-core xserver-xorg-input-evdev xserver-xorg-video-vesa fontconfig 
+fontconfig-config keyboard-configuration x11-xserver-utils "
 
 rm packages/xorg/*.deb
 cd packages/xorg
