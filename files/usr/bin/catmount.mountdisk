@@ -1,0 +1,27 @@
+#!/bin/sh
+#	Catmount.mountdisk is a part of catmount script.
+#	Made by Supphakit Duanghoy (c) 2022
+
+if [ -f /tmp/catmount.mountdisk.selected ]; then
+	rm /tmp/catmount.mountdisk.selected
+fi
+
+INPUT_REAL=$(echo "$1" | sed 's/://')
+INPUT=$INPUT_REAL
+DISK=$(echo $INPUT_REAL | cut -d':' -f 2)
+echo "$(echo SELECTED_DSK=$DISK)" > /tmp/catmount.mountdisk.selected
+
+. /tmp/catmount.mountdisk.selected
+
+NAME_DEVICE=${SELECTED_DSK#/dev/}
+MOUNTPOINT="/mnt/$NAME_DEVICE"
+
+if [ ! -d /mnt/$NAME_DEVICE ]; then
+	mkdir /mnt/$NAME_DEVICE
+fi
+
+mount $SELECTED_DSK $MOUNTPOINT
+
+rm /tmp/catmount.mountdisk.selected
+
+pcmanfm /mnt/$NAME_DEVICE & exit

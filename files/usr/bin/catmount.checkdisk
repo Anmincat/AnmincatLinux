@@ -1,0 +1,32 @@
+#!/bin/sh
+#	Catmount.checkdisk is a part of catmount script.
+#	Made by Supphakit Duanghoy (c) 2022
+
+if [ -f /tmp/catmount.checkdisk.selected ]; then
+	rm /tmp/catmount.checkdisk.selected
+fi
+
+INPUT_REAL=$(echo "$1" | sed 's/://')
+INPUT=$INPUT_REAL
+DISK_C=$(echo $INPUT_REAL | cut -d':' -f 2)
+DISK=$(echo $DISK_C | sed 's/[0-9]$//')
+echo "$(fdisk -x $DISK)" > /tmp/catmount.checkdisk.selected
+
+export MAIN_DIALOG='
+<window title="">
+<vbox>
+	<edit>
+		<input file>/tmp/catmount.checkdisk.selected</input>
+		<width>550</width>
+		<height>350</height>
+	</edit>
+	<hbox>
+	<button ok></button>
+	</hbox>
+</vbox>
+</window>
+'
+
+gtkdialog -c -p MAIN_DIALOG
+
+rm /tmp/catmount.checkdisk.selected

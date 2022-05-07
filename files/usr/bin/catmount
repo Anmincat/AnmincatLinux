@@ -1,0 +1,56 @@
+#!/bin/sh
+#	Catmount is a GTKdialog based script, harddisk autodetction and mounter.
+#	Made by Supphakit Duanghoy (c) 2022
+
+if [ -f /tmp/catmount.status ]; then
+	rm /tmp/catmount.status
+fi
+
+export MAIN_DIALOG='
+<vbox>
+  <frame Select drive you want to check, mount and use>
+    <tree rules_hint="true" exported_column="0">
+      <height>200</height><width>400</width>
+      <label>Detected media drives</label>
+      <input icon_column="1">/usr/bin/catmount.detectdisk</input>
+      <variable>CHOOSE</variable>
+    </tree>
+  </frame>
+  <hbox>
+		<button label="Mount">
+		</button>
+		<button label="Check">
+		<action>/usr/bin/catmount.checkdisk $CHOOSE</action>
+		</button>
+    	<button cancel></button>
+  </hbox>
+</vbox>
+'
+
+gtkdialog --program=MAIN_DIALOG > /tmp/catmount.status
+
+. /tmp/catmount.status
+
+if [ "$EXIT" = "Cancel" ]; then
+	exit 0
+else
+	if [ "$CHOOSE" = "" ]; then
+		export WARN_DIALOG='
+		 <vbox>
+		  <text>
+		    <label>Please select drive you want to use.</label>
+		  </text>
+		  <hbox>
+		   <button ok></button>
+		  </hbox>
+		 </vbox>
+		'
+
+		gtkdialog --program=WARN_DIALOG
+		exit 1
+	else
+		/usr/bin/catmount.mountdisk $CHOOSE
+	fi
+fi
+
+rm /tmp/catmount.status

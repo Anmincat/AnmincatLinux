@@ -1,0 +1,27 @@
+#!/bin/sh
+#	Catmount.detectdisk is a part of catmount script.
+#	Made by Supphakit Duanghoy (c) 2022
+
+if [ "$(blkid -s TYPE | grep ext)" = "" ]; then
+	:
+else
+	echo "$(blkid -s TYPE -s  LABEL | grep ext)"
+fi
+
+if [ "$(blkid -s TYPE | grep vfat)" = "" ]; then
+	:
+else
+	echo "$(blkid -s TYPE -s  LABEL | grep vfat)"
+fi
+
+if [ "$(blkid -s TYPE | grep ntfs)" = ""  ]; then
+	:
+else
+	echo "$(blkid -s TYPE -s  LABEL | grep ntfs)"
+fi
+
+if [ "$(blkid -s TYPE | grep xfs)" = ""  ]; then
+	:
+else
+	echo "$(blkid -s TYPE -s  LABEL | grep xfs)"
+fi
