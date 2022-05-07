@@ -3,7 +3,7 @@
 #	Made by Supphakit Duanghoy (c) 2022
 
 # EXT
-if [ "$(blki | grep ext)" = "" ]; then
+if [ "$(blkid | grep ext)" = "" ]; then
 	:
 else
 	echo "$(blkid | grep ext)"
