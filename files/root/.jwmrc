@@ -26,6 +26,7 @@
 		</Menu>
 		<Separator/>
 		<Menu icon="drive-harddisk.png" label="Harddisk / Partitions / Filesystems">
+			<Program icon="gparted.png" label="Catmount (Disk Drive Mounter)">catmount</Program>
 			<Program icon="gparted.png" label="GParted (GTK+2 Partition Editor)">gparted</Program>
 			<Program icon="xterm-color_48x48.xpm" label="Cfdisk (Ncurses-based Partition Editor)">xterm -e cfdisk</Program>
 			<Program icon="xterm-color_48x48.xpm" label="Parted (Console-based Partition Editor)">xterm -e parted</Program>
