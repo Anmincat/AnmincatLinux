@@ -27,8 +27,8 @@ do
 	if [ ! -d /mnt/$NAME_DEVICE ]; then
 		mkdir /mnt/$NAME_DEVICE
 	fi
-	umount /mnt/$NAME_DEVICE 2>&1
-	ntfs-3g -o ro $device /mnt/$NAME_DEVICE 2>&1
+	umount /mnt/$NAME_DEVICE 2> /dev/null
+	ntfs-3g -o ro $device /mnt/$NAME_DEVICE 2> /dev/null
 	
 	if [ -f /mnt/$NAME_DEVICE/Windows/System32/config/SAM ]; then
 		echo "Found valid Windows Installation at $device!"
