@@ -1,0 +1,146 @@
+#!/bin/sh
+#	Catntpw.clearpasswd is a GTKdialog based script. A easy, stupid front-end to chntpw 
+#	for clear windows user password
+#	Made by Supphakit Duanghoy (c) 2022
+
+# Clean old stuffs
+if [ -f /tmp/catntpw.users ]; then
+	rm /tmp/catntpw*
+fi
+
+# Check if there's NTFS drives
+if [ "$(blkid | grep ntfs)" = "" ]; then
+	echo "There's no NTFS drives can be found."
+	echo "Press ENTER to quit..."
+	read
+	exit 1
+fi
+
+# Check for valid Windows NTFS drives
+echo ">>>Press CTRL+C to exit or close this window"
+echo ">>>If anything won't show up for a long time."
+printf "Checking for valid Windows NTFS drives...\n"
+for device in /dev/sd*
+do
+	NAME_DEVICE=${device#/dev/}
+	
+	if [ ! -d /mnt/$NAME_DEVICE ]; then
+		mkdir /mnt/$NAME_DEVICE
+	fi
+	umount /mnt/$NAME_DEVICE
+	ntfs-3g -o ro $device /mnt/$NAME_DEVICE
+	
+	if [ -f /mnt/$NAME_DEVICE/Windows/System32/config/SAM ]; then
+		echo "Found valid Windows Installation at $device!"
+		export WIN_DRIVE=$NAME_DEVICE
+		export WIN_DRIVE_SAM=/mnt/$WIN_DRIVE/Windows/System32/config/SAM
+		break;
+	else
+		umount /mnt/$NAME_DEVICE
+	fi
+done
+
+# Check if Windows is in hibernated mode
+printf "Checking if Windows is in hibernate mode..."
+if [ -f /mnt/$WIN_DRIVE/hiberfil.sys ]; then
+	printf "yes\n"
+	
+	export WARN_HIBERNATE_DIALOG='
+	<vbox>
+		<hbox>
+		<pixmap>
+			<input file stock="gtk-dialog-warning"></input>
+		</pixmap>
+		<text>
+			<label>WARNING! WINDOWS HIBERNATION/FAST-STARTUP DETECTED!</label>
+		</text>
+		</hbox>
+		<text>
+			<label>You have toggled on Fast Startup or Hibernation mode in Windows.</label>
+		</text>
+		<text>
+			<label>To fix this please shutdown Windows completely, or you wish to continue and delete hibernation file (hiberfil.sys). You will completely lost your last saved Windows session and data.</label>
+		</text>
+		<hbox>
+			<button label="Continue"></button>
+			<button cancel></button>
+		</hbox>
+	</vbox>
+	'
+	
+	gtkdialog -c -p WARN_HIBERNATE_DIALOG > /tmp/catntpw.hiber.status
+	
+	. /tmp/catntpw.hiber.status
+	
+	if [ "$EXIT" = "Cancel" ]; then
+		umount /mnt/$WIN_DRIVE
+		rmdir /mnt/$WIN_DRIVE
+		rm /tmp/catntpw*
+		exit 1
+	else
+		umount /mnt/$NAME_DEVICE
+		ntfs-3g -o remove_hiberfile $device /mnt/$NAME_DEVICE
+		echo "Deleted Hibernation file."
+	fi
+else
+	printf "no\n"
+	umount /mnt/$NAME_DEVICE
+	ntfs-3g $device /mnt/$NAME_DEVICE
+fi
+
+# Look for users
+printf "Looking for users in $WIN_DRIVE...\n"
+ls /mnt/$WIN_DRIVE/Users > /tmp/catntpw.users
+sed '/^Public$/d' /tmp/catntpw.users > /tmp/catntpw.users.out1
+sed '/^All Users$/d' /tmp/catntpw.users.out1 > /tmp/catntpw.users.out2
+sed '/^Default$/d' /tmp/catntpw.users.out2 > /tmp/catntpw.users.out3
+sed '/^Default User$/d' /tmp/catntpw.users.out3 > /tmp/catntpw.users.out4
+sed '/^desktop.ini$/d' /tmp/catntpw.users.out4 > /tmp/catntpw.users.out5
+cat /tmp/catntpw.users.out5
+
+export MAIN_DIALOG='
+<vbox>
+  <frame Select users you want to clear a password>
+    <tree rules_hint="true" exported_column="0">
+      <height>200</height><width>400</width>
+      <label>Detected users</label>
+      <input file>/tmp/catntpw.users.out5</input>
+      <variable>CHOOSE</variable>
+    </tree>
+  </frame>
+  <hbox>
+		<button ok></button>
+    	<button cancel></button>
+  </hbox>
+</vbox>
+'
+
+gtkdialog  -c -p MAIN_DIALOG > /tmp/catntpw.status
+
+. /tmp/catntpw.status
+
+if [ "$EXIT" = "Cancel" ]; then
+	exit 0
+else
+	if [ "$CHOOSE" = "" ]; then
+		export WARN_NOTSELECTED_DIALOG='
+		 <vbox>
+		  <text>
+		    <label>Please select a user.</label>
+		  </text>
+		  <hbox>
+		   <button ok></button>
+		  </hbox>
+		 </vbox>
+		'
+
+		gtkdialog  -c -p WARN_NOTSELECTED_DIALOG
+	else
+		echo -e "1\nq\ny\n" | chntpw -u $CHOOSE $WIN_DRIVE_SAM
+	fi
+fi
+
+# When finished
+umount /mnt/$WIN_DRIVE
+rmdir /mnt/$WIN_DRIVE
+rm /tmp/catntpw*

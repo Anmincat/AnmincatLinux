@@ -25,11 +25,16 @@
 			<Program icon="dillo.xpm" label="Dillo (FLTK-based Tiny Web Browser)">xterm -e dillo</Program>
 		</Menu>
 		<Separator/>
-		<Menu icon="drive-harddisk.png" label="Harddisk / Partitions / Filesystems">
+		<Menu icon="drive-harddisk.png" label="Harddisk/Partitions/Filesystems">
 			<Program icon="gparted.png" label="Catmount (Disk Drive Mounter)">catmount</Program>
 			<Program icon="gparted.png" label="GParted (GTK+2 Partition Editor)">gparted</Program>
 			<Program icon="xterm-color_48x48.xpm" label="Cfdisk (Ncurses-based Partition Editor)">xterm -e cfdisk</Program>
 			<Program icon="xterm-color_48x48.xpm" label="Parted (Console-based Partition Editor)">xterm -e parted</Program>
+		</Menu>
+		<Menu icon="changes-prevent" label="Password">
+			<Program icon="windows_logo" label="Auto-Reset Windows Vista/7/8/10/11 Password (chntpw|IDE)">xterm -geometry 90x30+10+2 -e catntpw.clearpasswd.ide</Program>
+			<Program icon="windows_logo" label="Auto-Reset Windows Vista/7/8/10/11 Password (chntpw|SATA)">xterm -geometry 90x30+10+2 -e catntpw.clearpasswd.sata</Program>
+			<Program icon="windows_logo" label="Auto-Reset Windows Vista/7/8/10/11 Password (chntpw|NVME M.2)">xterm -geometry 90x30+10+2 -e catntpw.clearpasswd.nvme</Program>
 		</Menu>
 		<Menu icon="system-search.png" label="Recovery">
 			<Program icon="utilities-terminal.png" label="Photorec (File Data Recovery)">xterm -e photorec</Program>
@@ -139,6 +144,7 @@
 	<IconPath>/usr/share/icons/Adwaita/24x24/apps</IconPath>
 	<IconPath>/usr/share/icons/Adwaita/24x24/legacy</IconPath>
 	<IconPath>/usr/share/icons/Adwaita/24x24/devices</IconPath>
+	<IconPath>/usr/share/icons/Anmincat/mixed</IconPath>
 
 	<!-- Desktop Background. -->
 	<Desktops width="2" height="1">
