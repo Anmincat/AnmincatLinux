@@ -27,8 +27,8 @@ do
 	if [ ! -d /mnt/$NAME_DEVICE ]; then
 		mkdir /mnt/$NAME_DEVICE
 	fi
-	umount /mnt/$NAME_DEVICE
-	ntfs-3g -o ro $device /mnt/$NAME_DEVICE
+	umount /mnt/$NAME_DEVICE 2>&1
+	ntfs-3g -o ro $device /mnt/$NAME_DEVICE 2>&1
 	
 	if [ -f /mnt/$NAME_DEVICE/Windows/System32/config/SAM ]; then
 		echo "Found valid Windows Installation at $device!"
@@ -137,6 +137,7 @@ else
 		gtkdialog  -c -p WARN_NOTSELECTED_DIALOG
 	else
 		echo -e "1\nq\ny\n" | chntpw -u $CHOOSE $WIN_DRIVE_SAM
+		echo "Press ENTER to quit..."
 	fi
 fi
 
