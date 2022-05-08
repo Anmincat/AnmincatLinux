@@ -27,7 +27,7 @@ export MAIN_DIALOG='
 </vbox>
 '
 
-gtkdialog --program=MAIN_DIALOG > /tmp/catmount.status
+gtkdialog -c -p MAIN_DIALOG > /tmp/catmount.status
 
 . /tmp/catmount.status
 
@@ -46,7 +46,7 @@ else
 		 </vbox>
 		'
 
-		gtkdialog --program=WARN_DIALOG
+		gtkdialog -c -p WARN_DIALOG
 		exit 1
 	else
 		/usr/bin/catmount.mountdisk $CHOOSE
