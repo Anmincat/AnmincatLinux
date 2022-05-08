@@ -34,12 +34,7 @@ cp -rv files/root/PACKAGES system/root/
 cp -rv files/root/LICENSE system/root/
 cp -rv files/usr/share/wallpapers system/usr/share
 cp -rv files/sbin/powermenu system/sbin/
-cp -rv files/usr/bin/catsysinfo system/usr/bin/
-cp -rv files/usr/bin/catabout system/usr/bin/
-cp -rv files/usr/bin/catabout.* system/usr/bin/
-cp -rv files/usr/bin/catmount system/usr/bin/
-cp -rv files/usr/bin/catmount.* system/usr/bin/
-cp -rv files/usr/bin/catntpw system/usr/bin/
+cp -rv files/usr/bin/cat* system/usr/bin/
 cp -rv files/sbin/setup-* system/sbin/
 
 echo "[base] Applying services..."
