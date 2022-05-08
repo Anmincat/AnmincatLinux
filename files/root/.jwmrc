@@ -31,10 +31,10 @@
 			<Program icon="xterm-color_48x48.xpm" label="Cfdisk (Ncurses-based Partition Editor)">xterm -e cfdisk</Program>
 			<Program icon="xterm-color_48x48.xpm" label="Parted (Console-based Partition Editor)">xterm -e parted</Program>
 		</Menu>
-		<Menu icon="changes-prevent" label="Password">
-			<Program icon="windows_logo" label="Auto-Reset Windows Vista/7/8/10/11 Password (chntpw|IDE)">xterm -geometry 90x30+10+2 -e catntpw.clearpasswd.ide</Program>
-			<Program icon="windows_logo" label="Auto-Reset Windows Vista/7/8/10/11 Password (chntpw|SATA)">xterm -geometry 90x30+10+2 -e catntpw.clearpasswd.sata</Program>
-			<Program icon="windows_logo" label="Auto-Reset Windows Vista/7/8/10/11 Password (chntpw|NVME M.2)">xterm -geometry 90x30+10+2 -e catntpw.clearpasswd.nvme</Program>
+		<Menu icon="changes-prevent.png" label="Password">
+			<Program icon="windows_logo.png" label="Auto-Reset Windows Vista/7/8/10/11 Password (chntpw|IDE)">xterm -geometry 90x30+10+2 -e catntpw.clearpasswd.ide</Program>
+			<Program icon="windows_logo.png" label="Auto-Reset Windows Vista/7/8/10/11 Password (chntpw|SATA)">xterm -geometry 90x30+10+2 -e catntpw.clearpasswd.sata</Program>
+			<Program icon="windows_logo.png" label="Auto-Reset Windows Vista/7/8/10/11 Password (chntpw|NVME M.2)">xterm -geometry 90x30+10+2 -e catntpw.clearpasswd.nvme</Program>
 		</Menu>
 		<Menu icon="system-search.png" label="Recovery">
 			<Program icon="utilities-terminal.png" label="Photorec (File Data Recovery)">xterm -e photorec</Program>
