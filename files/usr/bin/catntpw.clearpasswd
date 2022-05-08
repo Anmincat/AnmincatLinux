@@ -1,5 +1,5 @@
 #!/bin/sh
-#	Catntpw is a GTKdialog/Console based script. A easy, stupid front-end to chntpw
+#	Catntpw is a GTKdialog based script. A easy, stupid front-end to chntpw
 #	Made by Supphakit Duanghoy (c) 2022
 
 # Clean old stuffs
@@ -7,21 +7,21 @@ if [ -f /tmp/catntpw.users ]; then
 	rm /tmp/catntpw*
 fi
 
-# Check if user is running this on Xorg
-printf "Checking if user is running on Xorg..."
-if [ "$(pgrep Xorg)" = "" ]; then
-	GUI_MODE=0
-	printf "no\n"
-else
-	GUI_MODE=1
-	printf "yes\n"
+# Check if there's NTFS drives
+if [ "$(blkid | grep ntfs)" = "" ]; then
+	echo "There's no NTFS drives can be found."
+	echo "Press ENTER to quit..."
+	read
+	exit 1
 fi
 
 # Check for valid Windows NTFS drives
+echo ">>>Press CTRL+C to exit or close this window"
+echo ">>>If anything won't show up for a long time."
 printf "Checking for valid Windows NTFS drives...\n"
 for device in /dev/sd*
 do
-	if [ "$(blkid $device | grep ntfs)" = ""  ]; then
+	if [ "$(blkid $device | grep ntfs)" = "" ]; then
 		:
 	else
 		NAME_DEVICE=${device#/dev/}
@@ -41,6 +41,51 @@ do
 		fi
 	fi
 done
+
+# Check if Windows is in hibernated mode
+printf "Checking if Windows is in hibernate mode..."
+if [ -f /mnt/$WIN_DRIVE/hiberfil.sys ]; then
+	printf "yes\n"
+	
+	export WARN_HIBERNATE_DIALOG='
+	<vbox>
+		<hbox>
+	    <pixmap>
+			<input file stock="gtk-dialog-warning"></input>
+        </pixmap>
+		<text>
+			<label>WARNING! WINDOWS HIBERNATION/FAST-STARTUP DETECTED!</label>
+		</text>
+		</hbox>
+		<text>
+			<label>You have toggled on Fast Startup or Hibernation mode in Windows.</label>
+		</text>
+		<text>
+			<label>To fix this please shutdown Windows completely, or you wish to continue and delete hibernation file (hiberfil.sys) but may lose some data.</label>
+		</text>
+		<hbox>
+			<button label="Continue"></button>
+			<button cancel></button>
+		</hbox>
+	</vbox>
+	'
+	
+	gtkdialog -c -p WARN_HIBERNATE_DIALOG > /tmp/catntpw.hiber.status
+	
+	. /tmp/catntpw.hiber.status
+	
+	if [ "$EXIT" = "Cancel" ]; then
+		umount /mnt/$WIN_DRIVE
+		rmdir /mnt/$WIN_DRIVE
+		rm /tmp/catntpw*
+		exit 1
+	else
+		rm /mnt/$WIN_DRIVE/hiberfil.sys
+		echo "Deleted Hibernation file."
+	fi
+else
+	printf "no\n"
+fi
 
 # Look for users
 printf "Looking for users in $WIN_DRIVE...\n"
@@ -69,7 +114,7 @@ export MAIN_DIALOG='
 </vbox>
 '
 
-gtkdialog --program=MAIN_DIALOG > /tmp/catntpw.status
+gtkdialog  -c -p MAIN_DIALOG > /tmp/catntpw.status
 
 . /tmp/catntpw.status
 
@@ -77,7 +122,7 @@ if [ "$EXIT" = "Cancel" ]; then
 	exit 0
 else
 	if [ "$CHOOSE" = "" ]; then
-		export WARN_DIALOG='
+		export WARN_NOTSELECTED_DIALOG='
 		 <vbox>
 		  <text>
 		    <label>Please select a user.</label>
@@ -88,9 +133,9 @@ else
 		 </vbox>
 		'
 
-		gtkdialog --program=WARN_DIALOG
+		gtkdialog  -c -p WARN_NOTSELECTED_DIALOG
 	else
-		chntpw -u $CHOOSE $WIN_DRIVE_SAM
+		echo -e "1\nq\ny\n" | chntpw -u $CHOOSE $WIN_DRIVE_SAM
 	fi
 fi
 
