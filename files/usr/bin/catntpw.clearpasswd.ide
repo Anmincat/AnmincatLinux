@@ -138,6 +138,7 @@ else
 	else
 		echo -e "1\nq\ny\n" | chntpw -u $CHOOSE $WIN_DRIVE_SAM
 		echo "Press ENTER to quit..."
+		read
 	fi
 fi
 
