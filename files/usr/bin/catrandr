@@ -1,0 +1,70 @@
+#!/bin/sh
+#	Catrandr, GTKdialog based script, easy front-end of xrandr
+#	Made by Supphakit Duanghoy (c) 2022
+
+if [ -f /tmp/catrandr.connected ]; then
+	rm /tmp/catrandr.connected
+	rm /tmp/catrandr.res
+	rm /tmp/catrandr.current
+	rm /tmp/catrandr.status
+fi
+
+xrandr | grep " connected " | awk '{ print$1 }' > /tmp/catrandr.connected
+CURRENT_RES=$(xrandr | grep \* | awk '{print $1}')
+echo "$CURRENT_RES" > /tmp/catrandr.current
+if [ ! -f /tmp/catrandr.savedres ]; then
+	echo "$CURRENT_RES" > /tmp/catrandr.savedres
+fi
+printf "800x600\n1024x768\n1280x1024\n1152x720\n1280x1024\n$(cat /tmp/catrandr.savedres)" > /tmp/catrandr.res
+
+export MAIN_DIALOG='
+<window title="Screen resolution">
+<vbox>
+	<text label="Connected on port: "></text>
+	<text>
+		<input file>/tmp/catrandr.connected</input>
+	</text>
+	<text label="Current resolution: "></text>
+	<text>
+		<input file>/tmp/catrandr.current</input>
+	</text>
+    <tree rules_hint="true" exported_column="0">
+      <height>200</height><width>400</width>
+      <label>Resolutions</label>
+      <input file>/tmp/catrandr.res</input>
+      <variable>CHOOSE</variable>
+    </tree>
+    <hbox>
+		<button ok></button>
+		<button cancel></button>
+    </hbox>
+</vbox>
+</window>
+'
+
+gtkdialog -c -p MAIN_DIALOG > /tmp/catrandr.status
+
+. /tmp/catrandr.status
+
+if [ "$EXIT" = "Cancel" ]; then
+	rm /tmp/catrandr.connected
+	rm /tmp/catrandr.res
+	rm /tmp/catrandr.current
+	rm /tmp/catrandr.status
+	exit 0
+fi
+
+if [ "$CHOOSE" = "" ]; then
+	rm /tmp/catrandr.connected
+	rm /tmp/catrandr.res
+	rm /tmp/catrandr.current
+	rm /tmp/catrandr.status
+	exit 1
+else
+	xrandr --output $(cat /tmp/catrandr.connected) --mode $CHOOSE
+fi
+
+rm /tmp/catrandr.connected
+rm /tmp/catrandr.res
+rm /tmp/catrandr.current
+rm /tmp/catrandr.status

@@ -21,8 +21,11 @@
 			<Program icon="viewnior.xpm" label="Viewnior (GTK+2 Image Viewer)">viewnior</Program>
 		</Menu>
 		<Menu icon="network-idle.png" label="Networking">
-			<Program icon="network-wired.png" label="Setup Ethernet Network (DHCP|LAN)">xterm -geometry 80x10+10+2 -e setup-ethernet-dhcp</Program>
+			<Program icon="network-wired.png" label="Setup Ethernet Network (DHCP/LAN)">xterm -geometry 80x10+10+2 -e setup-ethernet-dhcp</Program>
 			<Program icon="dillo.xpm" label="Dillo (FLTK-based Tiny Web Browser)">xterm -e dillo</Program>
+		</Menu>
+		<Menu icon="applications-system.png" label="Settings">
+			<Program icon="computer.png" label="Screen Resolution">catrandr</Program>
 		</Menu>
 		<Separator/>
 		<Menu icon="drive-harddisk.png" label="Harddisk/Partitions/Filesystems">
@@ -32,9 +35,9 @@
 			<Program icon="xterm-color_48x48.xpm" label="Parted (Console-based Partition Editor)">xterm -e parted</Program>
 		</Menu>
 		<Menu icon="changes-prevent.png" label="Password">
-			<Program icon="windows_logo.png" label="Auto-Reset Windows Vista/7/8/10/11 Password (chntpw|IDE)">xterm -geometry 90x30+10+2 -e catntpw.clearpasswd.ide</Program>
-			<Program icon="windows_logo.png" label="Auto-Reset Windows Vista/7/8/10/11 Password (chntpw|SATA)">xterm -geometry 90x30+10+2 -e catntpw.clearpasswd.sata</Program>
-			<Program icon="windows_logo.png" label="Auto-Reset Windows Vista/7/8/10/11 Password (chntpw|NVME M.2)">xterm -geometry 90x30+10+2 -e catntpw.clearpasswd.nvme</Program>
+			<Program icon="windows_logo.png" label="Auto-Reset Windows Vista/7/8/10/11 Password (chntpw/IDE)">xterm -geometry 90x30+10+2 -e catntpw.clearpasswd.ide</Program>
+			<Program icon="windows_logo.png" label="Auto-Reset Windows Vista/7/8/10/11 Password (chntpw/SATA)">xterm -geometry 90x30+10+2 -e catntpw.clearpasswd.sata</Program>
+			<Program icon="windows_logo.png" label="Auto-Reset Windows Vista/7/8/10/11 Password (chntpw/VME M.2)">xterm -geometry 90x30+10+2 -e catntpw.clearpasswd.nvme</Program>
 		</Menu>
 		<Menu icon="system-search.png" label="Recovery">
 			<Program icon="utilities-terminal.png" label="Photorec (File Data Recovery)">xterm -e photorec</Program>
