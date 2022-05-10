@@ -12,7 +12,7 @@ libcairomm-1.0-1v5 libatkmm-1.6-1v5 libglibmm-2.4-1v5 libsigc++-2.0-0v5 libpango
 libopenjp2-7 libwebpmux3 libfltk1.3 libcurl4 "
 
 PACKAGES="feh viewnior pcmanfm jwm conky-std xterm fonts-dejavu-core greybird-gtk-theme gtk2-engines-murrine 
-shared-mime-info hardinfo xdg-utils gtk2-engines-pixbuf adwaita-icon-theme dillo "
+shared-mime-info hardinfo xdg-utils gtk2-engines-pixbuf adwaita-icon-theme dillo idesk "
 
 rm packages/xapps/*.deb
 cd packages/xapps
