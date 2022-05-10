@@ -25,7 +25,7 @@
 			<Program icon="dillo.xpm" label="Dillo (FLTK-based Tiny Web Browser)">xterm -e dillo</Program>
 		</Menu>
 		<Menu icon="applications-system.png" label="Settings">
-			<Program icon="computer.png" label="Screen Resolution">catrandr</Program>
+			<Program icon="preferences-desktop-display.png" label="Screen Resolution">catrandr</Program>
 		</Menu>
 		<Separator/>
 		<Menu icon="drive-harddisk.png" label="Harddisk/Partitions/Filesystems">
@@ -205,7 +205,8 @@
 	<Key mask="CAS" key="R">exec:jwm -restart</Key>
 
 	<StartupCommand>
-		conky
+		conky &
+		idesk
 	</StartupCommand>
 
 </JWM>

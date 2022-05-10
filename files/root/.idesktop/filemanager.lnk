@@ -1,0 +1,9 @@
+table Icon
+	Caption: File Manager
+	Command: pcmanfm /root/
+	Icon: /usr/share/icons/Adwaita/48x48/legacy/document-open.png
+	Width: 48
+	Height: 48
+	X: 45
+	Y: 29
+end

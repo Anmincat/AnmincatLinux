@@ -29,6 +29,8 @@ cp -v files/root/.xinitrc system/root/
 cp -v files/root/.bash_profile system/root/
 cp -v files/root/.conkyrc system/root/
 cp -rv files/root/.config system/root/
+cp -rv files/root/.idesktop system/root/
+cp -rv files/root/.ideskrc system/root/
 cp -rv files/root/.Xresources system/root/
 cp -rv files/root/PACKAGES system/root/
 cp -rv files/root/LICENSE system/root/

@@ -1,0 +1,9 @@
+table Icon
+	Caption: GParted
+	Command: gparted
+	Icon: /usr/share/icons/hicolor/48x48/apps/gparted.png
+	Width: 48
+	Height: 48
+	X: 43
+	Y: 197
+end

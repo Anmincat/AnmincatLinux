@@ -1,0 +1,29 @@
+table Config
+	FontName: DejavuSans
+	FontSize: 11
+	FontColor: #FFFFFF
+	Locked: false
+	Transparency: 100
+	Shadow: True
+	ShadowColor: #000000
+	ShadowX: 1
+	ShadowY: 1
+	Bold: true
+	ClickDelay: 300
+	IconSnap: true
+	SnapWidth: 10
+	SnapHeight: 10
+	SnapOrigin: BottomRight
+	SnapShadow: false
+	SnapShadowTrans: 200
+	CaptionOnHover: false
+	FillStyle: fillinvert
+end
+
+table Actions
+	Reload: middle doubleClk
+	Drag: left hold
+	EndDrag: left singleClk
+	Execute[0]: left singleClk
+	Execute[1]: right singleClk
+end

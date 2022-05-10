@@ -1,0 +1,9 @@
+table Icon
+	Caption: Change resolution
+	Command: catrandr
+	Icon: /usr/share/icons/hicolor/48x48/legacy/preferences-desktop-display.png
+	Width: 48
+	Height: 48
+	X: 213
+	Y: 27
+end

@@ -1,0 +1,9 @@
+table Icon
+	Caption: Access Drives
+	Command: catmount
+	Icon: /usr/share/icons/Adwaita/48x48/legacy/drive-multidisk.png
+	Width: 48
+	Height: 48
+	X: 43
+	Y: 117
+end
