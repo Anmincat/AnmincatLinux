@@ -1,7 +1,7 @@
 table Icon
 	Caption: Change resolution
 	Command: catrandr
-	Icon: /usr/share/icons/hicolor/48x48/legacy/preferences-desktop-display.png
+	Icon: /usr/share/icons/Adwaita/48x48/legacy/preferences-desktop-display.png
 	Width: 48
 	Height: 48
 	X: 213

@@ -24,6 +24,6 @@ table Actions
 	Reload: middle doubleClk
 	Drag: left hold
 	EndDrag: left singleClk
-	Execute[0]: left singleClk
-	Execute[1]: right singleClk
+	Execute[0]: left doubleClk
+	Execute[1]: right doubleClk
 end
