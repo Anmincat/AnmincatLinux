@@ -26,6 +26,7 @@
 		</Menu>
 		<Menu icon="applications-system.png" label="Settings">
 			<Program icon="preferences-desktop-display.png" label="Screen Resolution">catrandr</Program>
+			<Program icon="input-keyboard.png" label="Keyboard/Mouse Settings">lxinput</Program>
 		</Menu>
 		<Separator/>
 		<Menu icon="drive-harddisk.png" label="Harddisk/Partitions/Filesystems">
