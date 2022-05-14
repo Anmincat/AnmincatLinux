@@ -38,7 +38,7 @@
 		<Menu icon="changes-prevent.png" label="Password">
 			<Program icon="windows_logo.png" label="Auto-Reset Windows Vista/7/8/10/11 Password (chntpw/IDE)">xterm -geometry 90x30+10+2 -e catntpw.clearpasswd.ide</Program>
 			<Program icon="windows_logo.png" label="Auto-Reset Windows Vista/7/8/10/11 Password (chntpw/SATA)">xterm -geometry 90x30+10+2 -e catntpw.clearpasswd.sata</Program>
-			<Program icon="windows_logo.png" label="Auto-Reset Windows Vista/7/8/10/11 Password (chntpw/VME M.2)">xterm -geometry 90x30+10+2 -e catntpw.clearpasswd.nvme</Program>
+			<Program icon="windows_logo.png" label="Auto-Reset Windows Vista/7/8/10/11 Password (chntpw/NVME M.2)">xterm -geometry 90x30+10+2 -e catntpw.clearpasswd.nvme</Program>
 		</Menu>
 		<Menu icon="system-search.png" label="Recovery">
 			<Program icon="utilities-terminal.png" label="Photorec (File Data Recovery)">xterm -e photorec</Program>
@@ -47,6 +47,7 @@
 		<Menu icon="computer.png" label="Monitoring">
 			<Program icon="utilities-terminal.png" label="Nmon (Nigel's Performance Monitor)">xterm -e nmon</Program>
 			<Program icon="htop.png" label="Htop (Console-based Interactive Process Viewer)">xterm -e htop</Program>
+			<Program icon="system-run.png" label="LXTask (GTK+2 Task Manager)">lxtask</Program>
 		</Menu>
 		<Menu icon="computer.png" label="System Information">
 			<Program icon="computer.png" label="CatSysINFO (Advanced Linux Information)">catsysinfo</Program>
@@ -61,7 +62,7 @@
 	<!-- Tray at the bottom. -->
 	<Tray x="0" y="-1" height="25" autohide="off">
 
-		<TrayButton icon="pan-up-symbolic.symbolic.png" label="Applications">root:1</TrayButton>
+		<TrayButton icon="start.png" label="Menu">root:1</TrayButton>
 		<Spacer width="5"/>
 		<!-- quick launch area. -->
 		<TrayButton icon="utilities-terminal.png">exec:xterm</TrayButton>
@@ -70,17 +71,17 @@
 		<Spacer width="3"/>
 		<TrayButton icon="accessories-text-editor.png">exec:leafpad</TrayButton>
 		<Spacer width="3"/>
-		<TrayButton icon="window-restore-symbolic.symbolic.png" popup="Show Desktop">showdesktop</TrayButton>
 		<Spacer width="10"/>
 
 		<!-- Config note: You can uncomment this to get a pager (multiple desktops) -->
-		<Pager labeled="true"/>
+		<Pager labeled="false"/>
 
 		<TaskList maxwidth="256"/>
 
 		<Spacer width="10"/>
 		<Dock/>
 		<Clock format="%H:%M:%S"></Clock>
+		<TrayButton icon="window-restore-symbolic.symbolic.png" popup="Show Desktop">showdesktop</TrayButton>
 		<Spacer width="3"/>
 
 	</Tray>
@@ -138,6 +139,10 @@
         <Foreground>#000000</Foreground>
         <Background>#999999</Background>
     </PopupStyle>
+    <ButtonClose>/usr/share/icons/Anmincat/close.png</ButtonClose>
+    <ButtonMax>/usr/share/icons/Anmincat/max.png</ButtonMax>
+    <ButtonMaxActive>/usr/share/icons/Anmincat/max.png</ButtonMaxActive>
+    <ButtonMin>/usr/share/icons/Anmincat/min.png</ButtonMin>
 
 	<!-- Path where icons can be found.  -->
 	<IconPath>/usr/share/icons</IconPath>
@@ -149,6 +154,7 @@
 	<IconPath>/usr/share/icons/Adwaita/24x24/legacy</IconPath>
 	<IconPath>/usr/share/icons/Adwaita/24x24/devices</IconPath>
 	<IconPath>/usr/share/icons/Anmincat/mixed</IconPath>
+	<IconPath>/usr/share/icons/Anmincat</IconPath>
 
 	<!-- Desktop Background. -->
 	<Desktops width="2" height="1">
