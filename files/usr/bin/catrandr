@@ -62,6 +62,7 @@ if [ "$CHOOSE" = "" ]; then
 	exit 1
 else
 	xrandr --output $(cat /tmp/catrandr.connected) --mode $CHOOSE
+	killall conky && sleep 1.5 && conky &
 fi
 
 rm /tmp/catrandr.connected
