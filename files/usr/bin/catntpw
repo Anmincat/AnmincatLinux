@@ -1,0 +1,28 @@
+#!/bin/sh
+#	Catntpw is a GTKdialog based script. A easy, stupid front-end to chntpw
+#	for clear windows user password
+#	Made by Supphakit Duanghoy (c) 2022
+
+export MAIN_DIALOG='
+<vbox>
+	<hbox>
+	<text>
+		<label>Type of installed Windows Harddisk/SSD?</label>
+	</text>
+	</hbox>
+	<hbox>
+		<button label="IDE">
+		<action>catntpw.clearpasswd.ide</action>
+		</button>
+		<button label="SATA">
+		<action>catntpw.clearpasswd.sata</action>
+		</button>
+		<button label="NVME/M.2">
+		<action>catntpw.clearpasswd.nvme</action>
+		</button>
+		<button cancel></button>
+	</hbox>
+</vbox>
+'
+
+gtkdialog -c -p MAIN_DIALOG
