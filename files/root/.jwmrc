@@ -72,7 +72,7 @@
 		<Spacer width="10"/>
 
 		<!-- Config note: You can uncomment this to get a pager (multiple desktops) -->
-		<Pager labeled="false"/>
+		<!-- Pager labeled="false"/ -->
 
 		<TaskList maxwidth="256"/>
 
