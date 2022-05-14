@@ -3,26 +3,50 @@
 #	for clear windows user password
 #	Made by Supphakit Duanghoy (c) 2022
 
+if [ -f /tmp/catntpw.status ]; then
+	rm /tmp/catntpw.status
+fi
+
 export MAIN_DIALOG='
 <vbox>
-	<hbox>
 	<text>
 		<label>Type of installed Windows Harddisk/SSD?</label>
 	</text>
-	</hbox>
+	<table>
+	    <width>500</width><height>200</height>
+	    <variable>CHOOSE</variable>
+	    <label>Type|Description</label>
+	    <item>IDE|Very old Harddisk connection port, wide-ribbon cable connector</item>
+	    <item>SATA|Today standard connection port, single-cable connector</item>
+	    <item>NVME/M.2|New type of storage that embbedded into motherboard</item>
+  	</table>
 	<hbox>
-		<button label="IDE">
-		<action>catntpw.clearpasswd.ide</action>
-		</button>
-		<button label="SATA">
-		<action>catntpw.clearpasswd.sata</action>
-		</button>
-		<button label="NVME/M.2">
-		<action>catntpw.clearpasswd.nvme</action>
-		</button>
+		<button ok></button>
 		<button cancel></button>
 	</hbox>
 </vbox>
 '
 
-gtkdialog -c -p MAIN_DIALOG
+gtkdialog -c -p MAIN_DIALOG > /tmp/catntpw.status
+
+. /tmp/catntpw.status
+
+if [ "$EXIT" = "Cancel" ]; then
+	rm /tmp/catntpw.status
+	exit 0
+fi
+
+if [ "$CHOOSE" = "IDE" ]; then
+	rm /tmp/catntpw.status
+	catntpw.clearpasswd.ide
+fi
+
+if [ "$CHOOSE" = "SATA" ]; then
+	rm /tmp/catntpw.status
+	catntpw.clearpasswd.sata
+fi
+
+if [ "$CHOOSE" = "NVME/M.2" ]; then
+	rm /tmp/catntpw.status
+	catntpw.clearpasswd.nvme
+fi
