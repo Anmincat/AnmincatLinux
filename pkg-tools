@@ -7,7 +7,7 @@ libunistring2 libuuid1 libidn11 libpci3 libnl-3-200 libnl-genl-3-200 libfdisk1 l
 
 PACKAGES="chntpw dosfstools e2fsprogs exfatprogs btrfs-progs reiser4progs reiserfsprogs nmon dmidecode dmsetup fuse fuse3 
 logsave mc mc-data nano nilfs-tools ntfs-3g partclone parted readline-common lynx lynx-common pciutils pci.ids htop testdisk 
-syslinux syslinux-efi syslinux-common syslinux-utils mtools extlinux fdisk dialog gddrescue neofetch "
+syslinux syslinux-efi syslinux-common syslinux-utils mtools extlinux fdisk dialog gddrescue neofetch inxi "
 
 rm packages/tools/*.deb
 cd packages/tools
